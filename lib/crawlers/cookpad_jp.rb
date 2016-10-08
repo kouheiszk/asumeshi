@@ -12,7 +12,7 @@ module Crawlers
     end
 
     def save_crawled_recipe(source_uid:, url:, title:, image_url:, materials:)
-      recipe = Recipe.new(source: SOURCE, source_uid: "#{source_uid}", url: url, title: title, image_url: image_url)
+      recipe = Recipe.new(source: SOURCE, source_uid: "#{source_uid}", lang: "jp", url: url, title: title, image_url: image_url)
       materials.each do |m|
         recipe.materials << Material.new(name: m)
       end
