@@ -35,7 +35,7 @@ Klass.seed do |k|
 end
 Klass.seed do |k|
   k.id = 8
-  k.name_jp = "豆"
+  k.name_jp = "そら豆,空豆,えんどう豆,エンドウ豆,さやえんどう"
   k.name_en = "bean"
 end
 Klass.seed do |k|
