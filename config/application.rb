@@ -21,5 +21,21 @@ module Asumeshi
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+    config.i18n.available_locales = [:ja]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :ja
+
+    config.time_zone = 'Tokyo'
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+
+    # Generators
+    config.generators do |g|
+      g.javascripts false
+      g.stylesheets false
+      g.helper false
+      g.test_framework false
+    end
   end
 end
