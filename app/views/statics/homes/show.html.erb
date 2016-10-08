@@ -1,1 +1,15 @@
-とっぷ
+<% content_for :header do %>
+<!-- No header -->
+<% end %>
+
+<div class="section">
+  <div class="container">
+    <h1 class="header center"><%= image_tag "logo.png", style: "max-width: 100%;" %></h1>
+    <div class="row center">
+      <h5 class="header col s12 light">明日のご飯、何にしますか？</h5>
+    </div>
+    <div class="row center">
+      <%= link_to "スタート", search_path, class: "btn-large waves-effect waves-light" %>
+    </div>
+  </div>
+</div>

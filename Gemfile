@@ -51,5 +51,10 @@ gem 'config' # 設定
 gem 'excon' # HTTPクライアント
 gem 'geoip' # IPから言語を判定するために
 
-gem 'bourbon' # SCSSフレームワーク
-gem 'neat' # グリッドmixiを提供するSCSSフレームワーク
+gem 'sprockets' # Assets compile
+
+gem 'uglifier', '>= 1.3.0' # Minify
+gem 'jquery-rails' # JQuery
+gem 'materialize-sass' # CSS
+gem 'turbolinks' # Turbolinks
+gem 'hashie' # Super cool hash

@@ -8,10 +8,12 @@ Rails.application.routes.draw do
 
     resources :trainings, only: [:index] do
       collection do
-        get :jp
+        get :ja
         get :en
       end
     end
+
+    resource :search, only: [:show]
 
     root 'statics/homes#show'
 

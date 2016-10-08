@@ -1,0 +1,12 @@
+<%= form_tag(search_path, method: :get, class: "col s12") do %>
+    <%= hidden_field_tag :debug, debug ? 1 : 0 %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= text_field_tag :title, title %>
+        <%= label_tag :title, "今日何食べた？" %>
+      </div>
+    </div>
+    <div class="row center">
+      <%= submit_tag "送信", class: "btn-large waves-effect waves-light" %>
+    </div>
+<% end %>

@@ -1,0 +1,49 @@
+<div class="section no-pad-bot">
+  <div class="container">
+    <% if @materials.present? %>
+        <% if @debug_mode %>
+            <h5 class="header">昨日食べたのは...</h5>
+            <p><%= @title %></p>
+            <table class="striped">
+              <thead>
+              <tr>
+                <th data-field="name">Name</th>
+                <th data-field="confidence">Confidence</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @materials.each do |m| %>
+                  <tr>
+                    <td><%= m.klass.names %></td>
+                    <td><%= m.confidence %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+        <% end %>
+
+        <h5 class="header">明日はこれを食べよう</h5>
+        <div class="row">
+          <% @suggestions.each do |s| %>
+              <div class="col s12 m6">
+                <div class="card">
+                  <div class="card-image">
+                    <%= image_tag s.image_url %>
+                  </div>
+                  <div class="card-content">
+                    <p><%= s.title %></p>
+                  </div>
+                  <div class="card-action">
+                    <%= link_to "レシピを見る", s.url, target: :blank %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+
+        <h5 class="header">もう一度？</h5>
+    <% end %>
+
+    <%= render "form", title: @title, debug: @debug_mode %>
+  </div>
+</div>

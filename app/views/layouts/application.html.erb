@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Asumeshi</title>
-    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <title>asumeshi</title>
+
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "application", media: :all, "data-turbolinks-track": :reload %>
+    <%= javascript_include_tag "application", media: :all, "data-turbolinks-track": :reload %>
   </head>
 
   <body>
+    <% if content_for?(:header) %>
+      <%= yield :header %>
+    <% else %>
+      <nav role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">ASUMESHI</a>
+          <% if nil %>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="#">学習データ</a></li>
+              </ul>
+
+              <ul id="nav-mobile" class="side-nav">
+                <li><a href="#">Navbar Link</a></li>
+              </ul>
+              <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+          <% end %>
+        </div>
+      </nav>
+    <% end %>
     <%= yield %>
   </body>
 </html>

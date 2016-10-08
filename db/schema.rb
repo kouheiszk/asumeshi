@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20161008140202) do
   end
 
   create_table "klasses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name_jp"
+    t.string   "name_ja"
     t.string   "name_en"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
