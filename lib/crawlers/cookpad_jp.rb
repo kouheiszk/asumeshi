@@ -27,7 +27,7 @@ module Crawlers
         # すでに保存されている場合はスキップする
         next if Recipe.where(source: SOURCE, source_uid: source_uid).exists?
 
-        puts "[COOKPAD] #{url}"
+        puts "[#{self.class.name}] #{url}"
 
         # 材料名などを取得
         page = @agent.get(url)

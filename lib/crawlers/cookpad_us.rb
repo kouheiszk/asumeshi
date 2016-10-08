@@ -1,10 +1,10 @@
 module Crawlers
   class CookpadUs
-    SOURCE = "cookpad_en"
-    BASE_URL = "http://cookpad.com/us"
-    SEARCH_URL = "http://cookpad.com/search"
-    RECIPE_URL = "http://cookpad.com/recipe"
-    SEARCH_PAGING_LIMIT = 10
+    SOURCE = "cookpad_us"
+    BASE_URL = "http://cookpad.com"
+    SEARCH_URL = "https://cookpad.com/us/search"
+    RECIPE_URL = "https://cookpad.com/us/recipes"
+    SEARCH_PAGING_LIMIT = 5
     SLEEP_SEC = 0.2
 
     def initialize
@@ -22,21 +22,22 @@ module Crawlers
     def crawl_recipe_pages(urls:)
       # すでにクロールしたものに関しては取得しない
       urls.each do |url|
-        source_uid = Crawlers::Cookpad.get_recipe_id_from_url(url: url)
+        source_uid = Crawlers::CookpadUs.get_recipe_id_from_url(url: url)
 
         # すでに保存されている場合はスキップする
         next if Recipe.where(source: SOURCE, source_uid: source_uid).exists?
 
-        puts "[COOKPAD] #{url}"
+        puts "[#{self.class.name}] #{url}"
 
         # 材料名などを取得
         page = @agent.get(url)
         sleep SLEEP_SEC
 
-        title = page.search("#recipe-title h1")&.text&.strip
-
-        image_url = page.search("#main-photo img")&.first&.get_attribute("src")
-        materials = page.search("#ingredients_list .ingredient_name .name")&.map(&:text)&.map(&:strip) || []
+        title = page.search("#about h1")&.text&.strip
+        image_url = page.search("#about .image img")&.first&.get_attribute("src")
+        materials = page.search("#ingredients .ingredient-list .ingredient__details")&.map do |node|
+          node.children&.last&.text&.strip&.downcase
+        end || []
 
         # 保存
         save_crawled_recipe(source_uid: source_uid, url: url, title: title, image_url: image_url, materials: materials)
@@ -44,7 +45,7 @@ module Crawlers
     end
 
     def search_and_retrieve_recipes(name:, page: 1)
-      search_url = "#{SEARCH_URL}/#{name}?order=date&page=#{page}"
+      search_url = "#{SEARCH_URL}/#{name}?page=#{page}"
 
       # すでに検索されている場合はスキップする
       return if CrawledUrl.where(url: search_url).exists?
@@ -52,7 +53,7 @@ module Crawlers
       page = @agent.get(search_url)
       sleep SLEEP_SEC
 
-      recipes = page.search("#main_content > .recipe-preview") || []
+      recipes = page.search("#main_contents > .recipe-list > .recipe") || []
       recipe_urls = recipes.map do |recipe|
         path = recipe.at("a")[:href]
         recipe_url = "#{BASE_URL}#{path}"
@@ -66,7 +67,7 @@ module Crawlers
     end
 
     def run
-      Klass.all.pluck(:name_jp).each do |names|
+      Klass.all.pluck(:name_en).each do |names|
         names.split(?,).each do |name|
           [*1..SEARCH_PAGING_LIMIT].each do |page|
             search_and_retrieve_recipes(name: name, page: page)
@@ -81,7 +82,7 @@ module Crawlers
     end
 
     def self.get_recipe_id_from_url(url:)
-      url.match(%r|recipe/(\d+)|)[1]
+      url.match(%r|recipes/(\d+)|)[1]
     end
   end
 end
