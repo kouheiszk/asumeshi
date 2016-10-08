@@ -2,7 +2,7 @@
   <div class="container">
     <% if @materials.present? %>
         <% if @debug_mode %>
-            <h5 class="header">昨日食べたのは...</h5>
+            <h5 class="header"><%= t("yesterday_eat") %></h5>
             <p><%= @title %></p>
             <table class="striped">
               <thead>
@@ -22,7 +22,7 @@
             </table>
         <% end %>
 
-        <h5 class="header">明日はこれを食べよう</h5>
+        <h5 class="header"><%= t("tomorrow_should_eat") %></h5>
         <div class="row">
           <% @suggestions.each do |s| %>
               <div class="col s12 m6">
@@ -34,14 +34,14 @@
                     <p><%= s.title %></p>
                   </div>
                   <div class="card-action">
-                    <%= link_to "レシピを見る", s.url, target: :blank %>
+                    <%= link_to t("see_recipe"), s.url, target: :blank %>
                   </div>
                 </div>
               </div>
           <% end %>
         </div>
 
-        <h5 class="header">もう一度？</h5>
+        <h5 class="header"><%= t("retry") %></h5>
     <% end %>
 
     <%= render "form", title: @title, debug: @debug_mode %>
