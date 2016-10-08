@@ -1,74 +1,31 @@
+require 'csv'
+
 class TrainingsController < ApplicationController
-  before_action :set_training, only: [:show, :edit, :update, :destroy]
-
-  # GET /trainings
-  # GET /trainings.json
   def index
-    @trainings = Training.all
   end
 
-  # GET /trainings/1
-  # GET /trainings/1.json
-  def show
-  end
-
-  # GET /trainings/new
-  def new
-    @training = Training.new
-  end
-
-  # GET /trainings/1/edit
-  def edit
-  end
-
-  # POST /trainings
-  # POST /trainings.json
-  def create
-    @training = Training.new(training_params)
-
+  def jp
     respond_to do |format|
-      if @training.save
-        format.html { redirect_to @training, notice: 'Training was successfully created.' }
-        format.json { render :show, status: :created, location: @training }
-      else
-        format.html { render :new }
-        format.json { render json: @training.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to jp_trainings_path(format: :csv) }
+      format.csv {
+        lang = :jp
+        headers["Content-Disposition"] = "attachment; filename=\"#{lang.to_s}.csv\""
+
+        csv_data = CSV.generate do |csv|
+          Klass.all.each do |klass|
+            names = klass["name_#{lang.to_s}"]
+            keywords = names.split(?,).map(&:strip)
+            recipes = Recipe.retrieve_by_keywords(keywords)
+            recipes.each do |recipe|
+              csv << [recipe.title, klass.id]
+            end
+          end
+        end
+        send_data(csv_data)
+      }
     end
   end
 
-  # PATCH/PUT /trainings/1
-  # PATCH/PUT /trainings/1.json
-  def update
-    respond_to do |format|
-      if @training.update(training_params)
-        format.html { redirect_to @training, notice: 'Training was successfully updated.' }
-        format.json { render :show, status: :ok, location: @training }
-      else
-        format.html { render :edit }
-        format.json { render json: @training.errors, status: :unprocessable_entity }
-      end
-    end
+  def en
   end
-
-  # DELETE /trainings/1
-  # DELETE /trainings/1.json
-  def destroy
-    @training.destroy
-    respond_to do |format|
-      format.html { redirect_to trainings_url, notice: 'Training was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_training
-      @training = Training.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def training_params
-      params.fetch(:training, {})
-    end
 end
