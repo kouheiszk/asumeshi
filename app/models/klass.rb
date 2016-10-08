@@ -1,4 +1,6 @@
 class Klass < ApplicationRecord
+  has_and_belongs_to_many :recommendations
+
   def recipes(lang: I18n.locale)
     names = self.names(lang: lang)
     keywords = names.split(?,).map(&:strip)

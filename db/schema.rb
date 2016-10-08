@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008140202) do
+ActiveRecord::Schema.define(version: 20161008204029) do
 
   create_table "crawled_urls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "url"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20161008140202) do
     t.string   "name_en"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "klasses_recommendations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer "recommendation_id"
+    t.integer "klass_id"
+    t.index ["klass_id"], name: "index_klasses_recommendations_on_klass_id", using: :btree
+    t.index ["recommendation_id"], name: "index_klasses_recommendations_on_recommendation_id", using: :btree
   end
 
   create_table "materials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -47,4 +54,13 @@ ActiveRecord::Schema.define(version: 20161008140202) do
     t.index ["source", "source_uid"], name: "index_recipes_on_source_and_source_uid", unique: true, using: :btree
   end
 
+  create_table "recommendations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string   "name_ja"
+    t.string   "name_en"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "klasses_recommendations", "klasses"
+  add_foreign_key "klasses_recommendations", "recommendations"
 end
