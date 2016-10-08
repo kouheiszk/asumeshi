@@ -17,6 +17,8 @@ module Crawlers
         recipe.materials << Material.new(name: m)
       end
       recipe.save
+    rescue => e
+      puts e
     end
 
     def crawl_recipe_pages(urls:)
