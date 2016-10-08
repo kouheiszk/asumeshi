@@ -32,5 +32,5 @@ $ bundle exec rails s
 ## クロール
 
 ```
-$ bundle exec rails runner lib/tasks/crawler_jp.rb
+$ bundle exec rails runner lib/crawlers/cookpad.rb
 ```
