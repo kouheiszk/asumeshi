@@ -4,7 +4,7 @@ module Crawlers
     BASE_URL = "http://cookpad.com"
     SEARCH_URL = "https://cookpad.com/us/search"
     RECIPE_URL = "https://cookpad.com/us/recipes"
-    SEARCH_PAGING_LIMIT = 5
+    SEARCH_PAGING_LIMIT = 10
     SLEEP_SEC = 0.2
 
     def initialize
