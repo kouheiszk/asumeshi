@@ -62,3 +62,4 @@ gem 'jquery-rails' # JQuery
 gem 'materialize-sass' # CSS
 gem 'turbolinks' # Turbolinks
 gem 'hashie' # Super cool hash
+gem 'unicorn' # Unicorn
