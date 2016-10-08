@@ -5,7 +5,7 @@ module Crawlers
     SEARCH_URL = "http://cookpad.com/search"
     RECIPE_URL = "http://cookpad.com/recipe"
     SEARCH_PAGING_LIMIT = 10
-    SLEEP_SEC = 1
+    SLEEP_SEC = 0.5
 
     def initialize
       @agent = Mechanize.new

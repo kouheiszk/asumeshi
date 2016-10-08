@@ -140,7 +140,7 @@ Klass.seed do |k|
 end
 Klass.seed do |k|
   k.id = 36
-  k.name_jp = "白菜"
+  k.name_jp = "白菜,キムチ"
 end
 Klass.seed do |k|
   k.id = 37
@@ -204,7 +204,7 @@ Klass.seed do |k|
 end
 Klass.seed do |k|
   k.id = 52
-  k.name_jp = "豚肉,ぶた肉"
+  k.name_jp = "豚肉,ぶた肉,ハム,ウィンナー,ソーセージ"
 end
 Klass.seed do |k|
   k.id = 53
