@@ -50,3 +50,6 @@ gem 'mechanize' # クローラ
 gem 'config' # 設定
 gem 'excon' # HTTPクライアント
 gem 'geoip' # IPから言語を判定するために
+
+gem 'bourbon' # SCSSフレームワーク
+gem 'neat' # グリッドmixiを提供するSCSSフレームワーク
