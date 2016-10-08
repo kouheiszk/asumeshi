@@ -49,3 +49,4 @@ gem 'seed-fu' # 初期データの管理
 gem 'mechanize' # クローラ
 gem 'config' # 設定
 gem 'excon' # HTTPクライアント
+gem 'geoip' # IPから言語を判定するために
