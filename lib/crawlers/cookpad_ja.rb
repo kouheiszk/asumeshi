@@ -88,6 +88,4 @@ module Crawlers
   end
 end
 
-Crawlers::CookpadJa.execute
-
 # binding.pry
