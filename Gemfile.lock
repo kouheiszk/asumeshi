@@ -49,10 +49,15 @@ GEM
     byebug (9.0.5)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
+    config (1.3.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.1.1)
     debug_inspector (0.0.2)
+    deep_merge (1.1.1)
     domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
+    excon (0.53.0)
     execjs (2.7.0)
     ffi (1.9.14)
     globalid (0.3.7)
@@ -181,6 +186,8 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   byebug
+  config
+  excon
   jbuilder (~> 2.5)
   listen (~> 3.0.5)
   mechanize
