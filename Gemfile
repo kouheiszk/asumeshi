@@ -19,6 +19,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'config' # 設定
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -48,7 +50,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'seed-fu' # 初期データの管理
 gem 'mechanize' # クローラ
-gem 'config' # 設定
 gem 'excon' # HTTPクライアント
 gem 'geoip' # IPから言語を判定するために
 
