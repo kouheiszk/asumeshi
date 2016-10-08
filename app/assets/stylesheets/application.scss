@@ -1,1 +1,23 @@
-@import 'materialize';
+@import "materialize";
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.footer-copyright {
+  .right {
+    &:not(:first-child) {
+      &:after {
+        padding-right: .5em;
+        padding-left: .5em;
+        content: "|";
+      }
+    }
+  }
+}
