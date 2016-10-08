@@ -54,7 +54,6 @@ gem 'geoip' # IPから言語を判定するために
 
 gem 'sprockets' # Assets compile
 
-gem 'uglifier', '>= 1.3.0' # Minify
 gem 'jquery-rails' # JQuery
 gem 'materialize-sass' # CSS
 gem 'turbolinks' # Turbolinks
