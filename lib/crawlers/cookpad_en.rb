@@ -1,6 +1,6 @@
 module Crawlers
-  class CookpadUs
-    SOURCE = "cookpad_us"
+  class CookpadEn
+    SOURCE = "cookpad_en"
     BASE_URL = "http://cookpad.com"
     SEARCH_URL = "https://cookpad.com/us/search"
     RECIPE_URL = "https://cookpad.com/us/recipes"
@@ -24,7 +24,7 @@ module Crawlers
     def crawl_recipe_pages(urls:)
       # すでにクロールしたものに関しては取得しない
       urls.each do |url|
-        source_uid = Crawlers::CookpadUs.get_recipe_id_from_url(url: url)
+        source_uid = Crawlers::CookpadEn.get_recipe_id_from_url(url: url)
 
         # すでに保存されている場合はスキップする
         next if Recipe.where(source: SOURCE, source_uid: source_uid).exists?
@@ -79,7 +79,7 @@ module Crawlers
     end
 
     def self.execute
-      crawler = Crawlers::CookpadUs.new
+      crawler = Crawlers::CookpadEn.new
       crawler.run
     end
 
@@ -89,6 +89,6 @@ module Crawlers
   end
 end
 
-Crawlers::CookpadUs.execute
+Crawlers::CookpadEn.execute
 
 # binding.pry
