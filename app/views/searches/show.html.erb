@@ -1,51 +1,56 @@
 <div class="section no-pad-bot">
-  <div class="container">
-    <% if @materials.present? %>
-        <% if @debug_mode %>
-            <h5 class="header"><%= t("yesterday_eat") %></h5>
-            <p><%= @title %></p>
-            <table class="striped">
-              <thead>
-              <tr>
-                <th data-field="name">Name</th>
-                <th data-field="confidence">Confidence</th>
-              </tr>
-              </thead>
-              <tbody>
-              <% @materials.each do |m| %>
-                  <tr>
-                    <td><%= m.klass.names %></td>
-                    <td><%= "%5.2f%" % (m.confidence * 100) %></td>
-                  </tr>
+  <% if @materials.present? %>
+    <div class="container">
+      <% if @debug_mode %>
+          <h5 class="header"><%= t("yesterday_eat") %></h5>
+          <p><%= @title %></p>
+          <table class="striped">
+            <thead>
+            <tr>
+              <th data-field="name">Name</th>
+              <th data-field="confidence">Confidence</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @materials.each do |m| %>
+                <tr>
+                  <td><%= m.klass.names %></td>
+                  <td><%= "%5.2f%" % (m.confidence * 100) %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+      <% end %>
+
+      <h5 class="header"><%= t("tomorrow_should_eat") %></h5>
+
+      <div class="row">
+        <div class="col s12 m6 offset-m3">
+          <div class="card">
+            <div class="card-image">
+              <%= image_tag(@recommendation.image_url) %>
+            </div>
+            <div class="card-content">
+              <p><%= @recommendation.title %></p>
+            </div>
+            <div class="card-action">
+              <%= link_to t("see_recipe"), @recommendation.url, target: :blank %>
+              <% if @recommendation.shop_url.present? %>
+                <%= link_to t("see_shop"), @recommendation.shop_url, target: :blank, class: :right %>
               <% end %>
-              </tbody>
-            </table>
-        <% end %>
-
-        <h5 class="header"><%= t("tomorrow_should_eat") %></h5>
-
-        <div class="row">
-          <div class="col s12 m6 offset-m3">
-            <div class="card">
-              <div class="card-image">
-                <%= image_tag(@recommendation.image_url) %>
-              </div>
-              <div class="card-content">
-                <p><%= @recommendation.title %></p>
-              </div>
-              <div class="card-action">
-                <%= link_to t("see_recipe"), @recommendation.url, target: :blank %>
-                <% if @recommendation.shop_url.present? %>
-                  <%= link_to t("see_shop"), @recommendation.shop_url, target: :blank, class: :right %>
-                <% end %>
-              </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  <% end %>
 
-        <h5 class="header"><%= t("retry") %></h5>
+  <div class="container">
+    <% if @materials.present? %>
+      <h5 class="header"><%= t("retry") %></h5>
+    <% else %>
+      <br /><br /><br /><br />
     <% end %>
-
     <%= render "form", title: @title, debug: @debug_mode %>
   </div>
 </div>
