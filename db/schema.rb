@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008204029) do
+ActiveRecord::Schema.define(version: 20161009021343) do
 
   create_table "crawled_urls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "url"
@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(version: 20161008204029) do
   create_table "recommendations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name_ja"
     t.string   "name_en"
+    t.string   "url"
+    t.string   "image_url"
+    t.string   "shop_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
