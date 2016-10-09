@@ -35,6 +35,9 @@
               </div>
               <div class="card-action">
                 <%= link_to t("see_recipe"), @recommendation.url, target: :blank %>
+                <% if @recommendation.shop_url.present? %>
+                  <%= link_to t("see_shop"), @recommendation.shop_url, target: :blank, class: :right %>
+                <% end %>
               </div>
             </div>
           </div>
