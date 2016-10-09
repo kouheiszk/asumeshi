@@ -1,9 +1,6 @@
 # config valid only for current version of Capistrano
 lock '3.6.1'
 
-set :rbenv_type, :system
-set :rbenv_ruby, '2.3.1'
-
 set :application, 'asumeshi'
 set :repo_url, 'git@github.com:kouheiszk/asumeshi.git'
 

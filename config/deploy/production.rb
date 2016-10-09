@@ -59,3 +59,20 @@
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
 #   }
+
+set :stage, :production
+set :unicorn_rack_env, 'production'
+set :branch, 'master'
+set :rails_env, 'production'
+set :migration_role, 'db'
+
+role :app, %w(asumeshi.info)
+role :web, %w(asumeshi.info)
+role :db, %w(asumeshi.info)
+
+set :ssh_options, {
+                  forward_agent: true,
+                  auth_methods: %w(publickey)
+                }
+
+server 'asumeshi.info', roles: %w(app web db)

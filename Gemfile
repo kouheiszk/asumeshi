@@ -19,6 +19,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# See https://github.com/rails/execjs#readme for more supported runtimes
+gem 'therubyracer', platforms: :ruby
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
