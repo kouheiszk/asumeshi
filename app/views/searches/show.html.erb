@@ -24,21 +24,19 @@
 
         <h5 class="header"><%= t("tomorrow_should_eat") %></h5>
         <div class="row">
-          <% @suggestions.each do |s| %>
-              <div class="col s12 m6">
-                <div class="card">
-                  <div class="card-image">
-                    <%= image_tag(s.image_url || "http://placehold.jp/150x150.png") %>
-                  </div>
-                  <div class="card-content">
-                    <p><%= s.title %></p>
-                  </div>
-                  <div class="card-action">
-                    <%= link_to t("see_recipe"), s.url, target: :blank %>
-                  </div>
-                </div>
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-image">
+                <%= image_tag(@recommendation.image_url) %>
               </div>
-          <% end %>
+              <div class="card-content">
+                <p><%= @recommendation.title %></p>
+              </div>
+              <div class="card-action">
+                <%= link_to t("see_recipe"), @recommendation.url, target: :blank %>
+              </div>
+            </div>
+          </div>
         </div>
 
         <h5 class="header"><%= t("retry") %></h5>
