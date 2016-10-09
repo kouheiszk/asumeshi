@@ -40,13 +40,6 @@ group :development do
 
   gem 'pry'
   gem 'pry-rails'
-
-  # Deploy
-  gem 'capistrano', require: false
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-rbenv', require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano3-unicorn', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
