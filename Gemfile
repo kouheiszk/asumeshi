@@ -59,6 +59,7 @@ gem 'excon' # HTTPクライアント
 gem 'geoip' # IPから言語を判定するために
 
 gem 'config' # 設定
+gem 'figaro' # 設定
 
 gem 'sprockets' # Assets compile
 
