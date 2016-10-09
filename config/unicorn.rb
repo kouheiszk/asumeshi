@@ -1,23 +1,11 @@
-# staging.rb
-app_path = '/var/www/asumeshi'
-shared_path = "#{app_path}/shared"
-current_path = "#{app_path}/current"
+worker_processes 2
 
-working_directory current_path
+listen '/tmp/unicorn.sock'
 
-pid "#{shared_path}/tmp/pids/unicorn.pid"
-stderr_path "#{shared_path}/log/unicorn.log"
-stdout_path "#{shared_path}/log/unicorn.log"
-
-listen "#{shared_path}/tmp/sockets/unicorn.sock"
-worker_processes 3
-timeout 30
+stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
+stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
 
 preload_app true
-
-before_exec do |server|
-  ENV['BUNDLE_GEMFILE'] = "#{current_path}/Gemfile"
-end
 
 before_fork do |server, worker|
   # the following is highly recomended for Rails + "preload_app true"
