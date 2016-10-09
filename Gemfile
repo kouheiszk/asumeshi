@@ -19,11 +19,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'config' # 設定
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -42,6 +37,13 @@ group :development do
 
   gem 'pry'
   gem 'pry-rails'
+
+  # Deploy
+  gem 'capistrano', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-unicorn', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -52,6 +54,8 @@ gem 'seed-fu' # 初期データの管理
 gem 'mechanize' # クローラ
 gem 'excon' # HTTPクライアント
 gem 'geoip' # IPから言語を判定するために
+
+gem 'config' # 設定
 
 gem 'sprockets' # Assets compile
 
