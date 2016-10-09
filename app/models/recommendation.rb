@@ -1,7 +1,7 @@
 class Recommendation < ApplicationRecord
   has_and_belongs_to_many :klasses
 
-  scope :exclude_klasses, -> (klasses) {joins(:klasses).eager_load(:klasses).where.not(klasses: {id: klasses.pluck(:id)})}
+  scope :include_klasses, -> (klasses) { joins(:klasses).eager_load(:klasses).where(klasses: {id: klasses.pluck(:id)}) }
 
   attr_reader :materials, :enoughs, :poors
 
@@ -9,7 +9,10 @@ class Recommendation < ApplicationRecord
     enough = Klass.where(id: materials.map(&:id))
     poor = Klass.where.not(id: materials.map(&:id))
 
-    recommendation = Recommendation.exclude_klasses(enough).sample
+    enough_recommendation_ids = Recommendation.include_klasses(enough).pluck(:id)
+    poor_recommendation_ids = Recommendation.include_klasses(poor).pluck(:id)
+    suggest_recommendation_ids = poor_recommendation_ids - enough_recommendation_ids
+    recommendation = Recommendation.where(id: suggest_recommendation_ids).sample
     recommendation.customize(materials, enough, poor)
   end
 

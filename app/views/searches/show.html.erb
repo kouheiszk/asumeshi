@@ -15,7 +15,7 @@
               <% @materials.each do |m| %>
                   <tr>
                     <td><%= m.klass.names %></td>
-                    <td><%= m.confidence %></td>
+                    <td><%= "%5.2f%" % (m.confidence * 100) %></td>
                   </tr>
               <% end %>
               </tbody>
@@ -25,7 +25,7 @@
         <h5 class="header"><%= t("tomorrow_should_eat") %></h5>
 
         <div class="row">
-          <div class="col s12 m6">
+          <div class="col s12 m6 offset-m3">
             <div class="card">
               <div class="card-image">
                 <%= image_tag(@recommendation.image_url) %>
