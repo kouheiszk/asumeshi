@@ -16,7 +16,7 @@ module Watson
                             password: @credential.password)
       result = Hashie::Mash.new(JSON.load(response.body))
       if result.classes.present?
-        result.classes.map do |c|
+        result.classes.select { |c| c.confidence > 0 }. map do |c|
           Hashie::Mash.new({
             id: c.class_name,
             confidence: c.confidence,
