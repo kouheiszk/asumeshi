@@ -8,3 +8,5 @@ en:
   see_shop: "Go to shop"
   yesterday_eat: "Yesterday ate..."
   submit: "Submit"
+  turn_on_debug_mode: "Turn on debug mode"
+  turn_off_debug_mode: "Turn off debug mode"

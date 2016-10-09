@@ -20,7 +20,7 @@
       <div class="navbar-fixed">
         <nav class="nav-wrapper" role="navigation">
           <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo">ASUMESHI</a>
+            <%= link_to "ASUMESHI", root_path, id: "logo-container", class: "brand-logo" %>
           </div>
         </nav>
       </div>
@@ -35,7 +35,11 @@
     <% else %>
       <footer class="page-footer">
         <div class="container">
-          <p class="grey-text text-lighten-4"><%= link_to "デバッグモードにする", "#", class: "grey-text text-lighten-4" %></p>
+          <p class="grey-text text-lighten-4">
+            <% if controller_name == "searches" %>
+              <%= link_to @debug_mode ? t("turn_off_debug_mode") : t("turn_on_debug_mode"), url_added_param(request.url, "debug", @debug_mode ? 0 : 1), class: "grey-text text-lighten-4" %>
+            <% end %>
+          </p>
         </div>
         <div class="footer-copyright">
           <div class="container">

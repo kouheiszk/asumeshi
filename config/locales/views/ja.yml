@@ -8,3 +8,5 @@ ja:
   see_shop: "ショップへ行く"
   yesterday_eat: "昨日食べたのは..."
   submit: "送信"
+  turn_on_debug_mode: "デバッグモードにする"
+  turn_off_debug_mode: "デバッグモードをやめる"
