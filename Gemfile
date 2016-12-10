@@ -57,7 +57,11 @@ gem 'figaro' # 設定
 gem 'sprockets' # Assets compile
 
 gem 'jquery-rails' # JQuery
-gem 'materialize-sass' # CSS
+gem 'bootstrap', '~> 4.0.0.alpha5' # Bootstrap
 gem 'turbolinks' # Turbolinks
 gem 'hashie' # Super cool hash
 gem 'unicorn' # Unicorn
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end

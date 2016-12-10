@@ -1,54 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>asumeshi</title>
+  <title>asumeshi</title>
 
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag "application", media: :all, "data-turbolinks-track": :reload %>
-    <%= javascript_include_tag "application", media: :all, "data-turbolinks-track": :reload %>
-  </head>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: :all, 'data-turbolinks-track': :reload %>
+  <%= javascript_include_tag 'application', media: :all, 'data-turbolinks-track': :reload %>
+</head>
 
-  <body>
-    <% if content_for?(:header) %>
-      <%= yield :header %>
-    <% else %>
-      <div class="navbar-fixed">
-        <nav class="nav-wrapper" role="navigation">
-          <div class="nav-wrapper container">
-            <%= link_to "ASUMESHI", root_path, id: "logo-container", class: "brand-logo" %>
-          </div>
-        </nav>
-      </div>
-    <% end %>
+<body>
 
-    <main>
-      <%= yield %>
-    </main>
+<header>
+  <%= link_to "ASUMESHI", root_path %>
+</header>
 
-    <% if content_for?(:footer) %>
-      <%= yield :footer %>
-    <% else %>
-      <footer class="page-footer">
-        <div class="container">
-          <p class="grey-text text-lighten-4">
-            <% if controller_name == "searches" %>
-              <%= link_to @debug_mode ? t("turn_off_debug_mode") : t("turn_on_debug_mode"), url_added_param(request.url, "debug", @debug_mode ? 0 : 1), class: "grey-text text-lighten-4" %>
-            <% end %>
-          </p>
-        </div>
-        <div class="footer-copyright">
-          <div class="container">
-            Team IDEAL TELLERS
-            <%= link_to "English", root_path(locale: :en), class: "grey-text text-lighten-4 right" %>
-            <%= link_to "日本語", root_path(locale: :ja), class: "grey-text text-lighten-4 right" %>
-          </div>
-        </div>
-      </footer>
-    <% end %>
-  </body>
+<!-- Begin page content -->
+<main>
+  <%= yield %>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">
+      Team IDEAL TELLERS
+      <%= link_to 'English', root_path(locale: :en) %>
+      <%= link_to '日本語', root_path(locale: :ja) %>
+      <% if controller_name == 'searches' %>
+          <%= link_to @debug_mode ? t('turn_off_debug_mode') : t('turn_on_debug_mode'), url_added_param(request.url, 'debug', @debug_mode ? 0 : 1) %>
+      <% end %>
+    </span>
+  </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js' %>
+
+</body>
 </html>
