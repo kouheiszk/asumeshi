@@ -1,365 +1,308 @@
 Klass.seed do |k|
   k.id = 1
-  k.name_ja = "ゴーヤ"
-  k.name_en = "bitter gourd,bitter melon"
+  k.name = 'ゴーヤ'
 end
 Klass.seed do |k|
   k.id = 2
-  k.name_ja = "にんじん,人参"
-  k.name_en = "carrot"
+  k.name = 'にんじん,人参'
 end
 Klass.seed do |k|
   k.id = 3
-  k.name_ja = "たまねぎ,玉ねぎ"
-  k.name_en = "onion"
+  k.name = 'たまねぎ,玉ねぎ'
 end
 Klass.seed do |k|
   k.id = 4
-  k.name_ja = "じゃがいも"
-  k.name_en = "potato"
+  k.name = 'じゃがいも'
 end
 Klass.seed do |k|
   k.id = 5
-  k.name_ja = "キャベツ"
-  k.name_en = "cabbage"
+  k.name = 'キャベツ'
 end
 Klass.seed do |k|
   k.id = 6
-  k.name_ja = "きのこ"
-  k.name_en = "mushroom"
+  k.name = 'きのこ'
 end
 Klass.seed do |k|
   k.id = 7
-  k.name_ja = "大豆"
-  k.name_en = "soybean"
+  k.name = '大豆'
 end
 Klass.seed do |k|
   k.id = 8
-  k.name_ja = "そら豆,空豆,えんどう豆,エンドウ豆,さやえんどう"
-  k.name_en = "bean"
+  k.name = 'そら豆,空豆,えんどう豆,エンドウ豆,さやえんどう'
 end
 Klass.seed do |k|
   k.id = 9
-  k.name_ja = "もやし"
-  k.name_en = "bean sprouts"
+  k.name = 'もやし'
 end
 Klass.seed do |k|
   k.id = 10
-  k.name_ja = "にら"
-  k.name_en = "chinese chives"
+  k.name = 'にら'
 end
 Klass.seed do |k|
   k.id = 11
-  k.name_ja = "ピーマン"
-  k.name_en = "green pepper"
+  k.name = 'ピーマン'
 end
 Klass.seed do |k|
   k.id = 12
-  k.name_ja = "とまと,トマト"
-  k.name_en = "tomato"
+  k.name = 'とまと,トマト'
 end
 Klass.seed do |k|
   k.id = 13
-  k.name_ja = "なす,ナス"
-  k.name_en = "eggplant"
+  k.name = 'なす,ナス'
 end
 Klass.seed do |k|
   k.id = 14
-  k.name_ja = "かぼちゃ,カボチャ,南瓜"
-  k.name_en = "pumpkin"
+  k.name = 'かぼちゃ,カボチャ,南瓜'
 end
 Klass.seed do |k|
   k.id = 15
-  k.name_ja = "パプリカ"
-  k.name_en = "paprika"
+  k.name = 'パプリカ'
 end
 Klass.seed do |k|
   k.id = 16
-  k.name_ja = "ズッキーニ"
-  k.name_en = "zucchini"
+  k.name = 'ズッキーニ'
 end
 Klass.seed do |k|
   k.id = 17
-  k.name_ja = "オクラ"
-  k.name_en = "okra"
+  k.name = 'オクラ'
 end
 Klass.seed do |k|
   k.id = 18
-  k.name_ja = "きゅうり"
-  k.name_en = "cucumber"
+  k.name = 'きゅうり'
 end
 Klass.seed do |k|
   k.id = 19
-  k.name_ja = "とうもろこし,トウモロコシ"
-  k.name_en = "corn"
+  k.name = 'とうもろこし,トウモロコシ'
 end
 Klass.seed do |k|
   k.id = 20
-  k.name_ja = "モロヘイヤ"
-  k.name_en = "molokheiya"
+  k.name = 'モロヘイヤ'
 end
 Klass.seed do |k|
   k.id = 21
-  k.name_ja = "生姜,しょうが"
-  k.name_en = "ginger"
+  k.name = '生姜,しょうが'
 end
 Klass.seed do |k|
   k.id = 22
-  k.name_ja = "貝"
-  k.name_en = "shellfish"
+  k.name = '貝'
 end
 Klass.seed do |k|
   k.id = 23
-  k.name_ja = "ほたて,ホタテ,帆立"
-  k.name_en = "scallop"
+  k.name = 'ほたて,ホタテ,帆立'
 end
 Klass.seed do |k|
   k.id = 24
-  k.name_ja = "ムール貝"
-  k.name_en = "scallop mussel"
+  k.name = 'ムール貝'
 end
 Klass.seed do |k|
   k.id = 25
-  k.name_ja = "牡蠣"
-  k.name_en = "oyster"
+  k.name = '牡蠣'
 end
 Klass.seed do |k|
   k.id = 26
-  k.name_ja = "かに,カニ,蟹"
-  k.name_en = "crab"
+  k.name = 'かに,カニ,蟹'
 end
 Klass.seed do |k|
   k.id = 27
-  k.name_ja = "たまご,タマゴ,卵"
-  k.name_en = "egg"
+  k.name = 'たまご,タマゴ,卵'
 end
 Klass.seed do |k|
   k.id = 28
-  k.name_ja = "とうふ,豆腐,油揚げ"
-  k.name_en = "tofu"
+  k.name = 'とうふ,豆腐,油揚げ'
 end
 Klass.seed do |k|
   k.id = 29
-  k.name_ja = "なっとう,納豆"
-  k.name_en = "natto"
+  k.name = 'なっとう,納豆'
 end
 Klass.seed do |k|
   k.id = 30
-  k.name_ja = "こんにゃく"
-  k.name_en = "konjac"
+  k.name = 'こんにゃく'
 end
 Klass.seed do |k|
   k.id = 31
-  k.name_ja = "たけのこ"
-  k.name_en = "bamboo shoot"
+  k.name = 'たけのこ'
 end
 Klass.seed do |k|
   k.id = 32
-  k.name_ja = "アスパラガス"
-  k.name_en = "asparagus"
+  k.name = 'アスパラガス'
 end
 Klass.seed do |k|
   k.id = 33
-  k.name_ja = "アボカド"
-  k.name_en = "avocado"
+  k.name = 'アボカド'
 end
 Klass.seed do |k|
   k.id = 34
-  k.name_ja = "レタス"
-  k.name_en = "lettuce"
+  k.name = 'レタス'
 end
 Klass.seed do |k|
   k.id = 35
-  k.name_ja = "大根"
-  k.name_en = "radish, japanese radish"
+  k.name = '大根'
 end
 Klass.seed do |k|
   k.id = 36
-  k.name_ja = "白菜,キムチ"
-  k.name_en = "chinese cabbage, kimchi"
+  k.name = '白菜,キムチ'
 end
 Klass.seed do |k|
   k.id = 37
-  k.name_ja = "里芋"
-  k.name_en = "taro"
+  k.name = '里芋'
 end
 Klass.seed do |k|
   k.id = 38
-  k.name_ja = "さつまいも"
-  k.name_en = "sweet potato"
+  k.name = 'さつまいも'
 end
 Klass.seed do |k|
   k.id = 39
-  k.name_ja = "長芋,山芋"
-  k.name_en = "yam"
+  k.name = '長芋,山芋'
 end
 Klass.seed do |k|
   k.id = 40
-  k.name_ja = "ブロッコリー"
-  k.name_en = "broccoli"
+  k.name = 'ブロッコリー'
 end
 Klass.seed do |k|
   k.id = 41
-  k.name_ja = "チンゲンサイ,青梗菜"
-  k.name_en = "bok choy"
+  k.name = 'チンゲンサイ,青梗菜'
 end
 Klass.seed do |k|
   k.id = 42
-  k.name_ja = "セロリ"
-  k.name_en = "celery"
+  k.name = 'セロリ'
 end
 Klass.seed do |k|
   k.id = 43
-  k.name_ja = "かぶ"
-  k.name_en = "turnip"
+  k.name = 'かぶ'
 end
 Klass.seed do |k|
   k.id = 44
-  k.name_ja = "カリフラワー"
-  k.name_en = "cauliflower"
+  k.name = 'カリフラワー'
 end
 Klass.seed do |k|
   k.id = 45
-  k.name_ja = "長ねぎ"
-  k.name_en = "leek,long leek,green onion"
+  k.name = '長ねぎ'
 end
 Klass.seed do |k|
   k.id = 46
-  k.name_ja = "ほうれん草,小松菜"
-  k.name_en = "spinach"
+  k.name = 'ほうれん草,小松菜'
 end
 Klass.seed do |k|
   k.id = 47
-  k.name_ja = "にんにく"
-  k.name_en = "garlic"
+  k.name = 'にんにく'
 end
 Klass.seed do |k|
   k.id = 48
-  k.name_ja = "春菊"
-  k.name_en = "garland chrysanthemum"
+  k.name = '春菊'
 end
 Klass.seed do |k|
   k.id = 49
-  k.name_ja = "グリーンピース"
-  k.name_en = "green peas"
+  k.name = 'グリーンピース'
 end
 Klass.seed do |k|
   k.id = 50
-  k.name_ja = "クレソン"
-  k.name_en = "watercress"
+  k.name = 'クレソン'
 end
 Klass.seed do |k|
   k.id = 51
-  k.name_ja = "牛肉"
-  k.name_en = "beef"
+  k.name = '牛肉'
 end
 Klass.seed do |k|
   k.id = 52
-  k.name_ja = "豚肉,ぶた肉,ハム,ウィンナー,ソーセージ"
-  k.name_en = "pork, ham, weiner, sausage"
+  k.name = '豚肉,ぶた肉,ハム,ウィンナー,ソーセージ'
 end
 Klass.seed do |k|
   k.id = 53
-  k.name_ja = "鶏肉,とり肉,鶏もも肉,鶏むね肉,手羽先"
-  k.name_en = "chicken,chicken thigh,chicken breast meat,chicken wing"
+  k.name = '鶏肉,とり肉,鶏もも肉,鶏むね肉,手羽先'
 end
 Klass.seed do |k|
   k.id = 54
-  k.name_ja = "挽き肉"
-  k.name_en = "minced meat"
+  k.name = '挽き肉'
 end
 Klass.seed do |k|
   k.id = 55
-  k.name_ja = "鮭,さけ,しゃけ,サーモン"
-  k.name_en = "salmon"
+  k.name = '鮭,さけ,しゃけ,サーモン'
 end
 Klass.seed do |k|
   k.id = 56
-  k.name_ja = "いわし,イワシ,鰯"
-  k.name_en = "sardine"
+  k.name = 'いわし,イワシ,鰯'
 end
 Klass.seed do |k|
   k.id = 57
-  k.name_ja = "さば,鯖"
-  k.name_en = "mackerel"
+  k.name = 'さば,鯖'
 end
 Klass.seed do |k|
   k.id = 58
-  k.name_ja = "あじ,鯵"
-  k.name_en = "horse mackerel"
+  k.name = 'あじ,鯵'
 end
 Klass.seed do |k|
   k.id = 59
-  k.name_ja = "ぶり,ブリ,鰤"
-  k.name_en = "yellowtail"
+  k.name = 'ぶり,ブリ,鰤'
 end
 Klass.seed do |k|
   k.id = 60
-  k.name_ja = "さんま,サンマ,秋刀魚"
-  k.name_en = "pacific saury,mackerel pike"
+  k.name = 'さんま,サンマ,秋刀魚'
 end
 Klass.seed do |k|
   k.id = 61
-  k.name_ja = "たい,鯛"
-  k.name_en = "sea bream"
+  k.name = 'たい,鯛'
 end
 Klass.seed do |k|
   k.id = 62
-  k.name_ja = "マグロ,鮪"
-  k.name_en = "tuna"
+  k.name = 'マグロ,鮪'
 end
 Klass.seed do |k|
   k.id = 63
-  k.name_ja = "ひらめ,ヒラメ,平目"
-  k.name_en = "flatfish"
+  k.name = 'ひらめ,ヒラメ,平目'
 end
 Klass.seed do |k|
   k.id = 64
-  k.name_ja = "かれい"
-  k.name_en = "flounder"
+  k.name = 'かれい'
 end
 Klass.seed do |k|
   k.id = 65
-  k.name_ja = "わかさぎ,ワカサギ"
-  k.name_en = "pond smelt,smelt"
+  k.name = 'わかさぎ,ワカサギ'
 end
 Klass.seed do |k|
   k.id = 66
-  k.name_ja = "たら,鱈"
-  k.name_en = "cod,pollack"
+  k.name = 'たら,鱈'
 end
 Klass.seed do |k|
   k.id = 67
-  k.name_ja = "うなぎ,あなご,アナゴ,穴子"
-  k.name_en = "sea eel,eel"
+  k.name = 'うなぎ,あなご,アナゴ,穴子'
 end
 Klass.seed do |k|
   k.id = 68
-  k.name_ja = "かつお,カツオ,鰹"
-  k.name_en = "bonito"
+  k.name = 'かつお,カツオ,鰹'
 end
 Klass.seed do |k|
   k.id = 69
-  k.name_ja = "えび,エビ,海老"
-  k.name_en = "prawns,shrimp"
+  k.name = 'えび,エビ,海老'
 end
 Klass.seed do |k|
   k.id = 70
-  k.name_ja = "いか,イカ"
-  k.name_en = "cuttlefish,squid"
+  k.name = 'いか,イカ'
 end
 Klass.seed do |k|
   k.id = 71
-  k.name_ja = "たこ,タコ,蛸"
-  k.name_en = "octopus"
+  k.name = 'たこ,タコ,蛸'
 end
 Klass.seed do |k|
   k.id = 72
-  k.name_ja = "わかめ,こんぶ,昆布,ひじき,海藻"
-  k.name_en = "seaweed,"
+  k.name = 'わかめ,こんぶ,昆布,ひじき,海藻'
 end
 Klass.seed do |k|
   k.id = 73
-  k.name_ja = "チーズ"
-  k.name_en = "cheese"
+  k.name = 'チーズ'
+end
+Klass.seed do |k|
+  k.id = 74
+  k.name = '牛乳'
+end
+Klass.seed do |k|
+  k.id = 75
+  k.name = '小麦,小麦粉,薄力粉'
+end
+Klass.seed do |k|
+  k.id = 76
+  k.name = 'そば'
+end
+Klass.seed do |k|
+  k.id = 77
+  k.name = '落花生,ピーナッツ,ピーナツ,ナッツ'
 end

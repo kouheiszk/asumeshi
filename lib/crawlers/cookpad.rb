@@ -1,10 +1,10 @@
 module Crawlers
-  class CookpadJa
-    SOURCE = "cookpad_ja"
+  class Cookpad
+    SOURCE = "cookpad"
     BASE_URL = "http://cookpad.com"
     SEARCH_URL = "http://cookpad.com/search"
     RECIPE_URL = "http://cookpad.com/recipe"
-    SEARCH_PAGING_LIMIT = 20
+    SEARCH_PAGING_LIMIT = 5
     SLEEP_SEC = 0.2
 
     def initialize
@@ -12,7 +12,7 @@ module Crawlers
     end
 
     def save_crawled_recipe(source_uid:, url:, title:, image_url:, materials:)
-      recipe = Recipe.new(source: SOURCE, source_uid: "#{source_uid}", lang: "ja", url: url, title: title, image_url: image_url)
+      recipe = Recipe.new(source: SOURCE, source_uid: "#{source_uid}", url: url, title: title, image_url: image_url)
       materials.each do |m|
         recipe.materials << Material.new(name: m)
       end
@@ -24,7 +24,7 @@ module Crawlers
     def crawl_recipe_pages(urls:)
       # すでにクロールしたものに関しては取得しない
       urls.each do |url|
-        source_uid = Crawlers::CookpadJa.get_recipe_id_from_url(url: url)
+        source_uid = Crawlers::Cookpad.get_recipe_id_from_url(url: url)
 
         # すでに保存されている場合はスキップする
         next if Recipe.where(source: SOURCE, source_uid: source_uid).exists?
@@ -68,7 +68,7 @@ module Crawlers
     end
 
     def run
-      Klass.all.pluck(:name_ja).each do |names|
+      Klass.all.pluck(:name).each do |names|
         names.split(?,).each do |name|
           [*1..SEARCH_PAGING_LIMIT].each do |page|
             search_and_retrieve_recipes(name: name, page: page)
@@ -78,7 +78,7 @@ module Crawlers
     end
 
     def self.execute
-      crawler = Crawlers::CookpadJa.new
+      crawler = Crawlers::Cookpad.new
       crawler.run
     end
 

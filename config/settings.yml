@@ -1,10 +1,5 @@
 watson:
   nlc:
-    ja:
-      classifier_id: "INPUT settings.local.yml"
-      user: "INPUT settings.local.yml"
-      password: "INPUT settings.local.yml"
-    en:
-      classifier_id: "INPUT settings.local.yml"
-      user: "INPUT settings.local.yml"
-      password: "INPUT settings.local.yml"
+    classifier_id: "INPUT settings.local.yml"
+    user: "INPUT settings.local.yml"
+    password: "INPUT settings.local.yml"

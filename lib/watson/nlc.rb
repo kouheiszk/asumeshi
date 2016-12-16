@@ -1,8 +1,7 @@
 module Watson
   class Nlc
-    def initialize(lang)
-      @lang = lang
-      @credential = Settings.watson.nlc[lang]
+    def initialize
+      @credential = Settings.watson.nlc
     end
 
     def fetch_materials(title:)

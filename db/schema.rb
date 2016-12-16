@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009021343) do
+ActiveRecord::Schema.define(version: 20161008065602) do
 
   create_table "crawled_urls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "url"
@@ -20,17 +20,9 @@ ActiveRecord::Schema.define(version: 20161009021343) do
   end
 
   create_table "klasses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name_ja"
-    t.string   "name_en"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "klasses_recommendations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.integer "recommendation_id"
-    t.integer "klass_id"
-    t.index ["klass_id"], name: "index_klasses_recommendations_on_klass_id", using: :btree
-    t.index ["recommendation_id"], name: "index_klasses_recommendations_on_recommendation_id", using: :btree
   end
 
   create_table "materials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -45,25 +37,12 @@ ActiveRecord::Schema.define(version: 20161009021343) do
   create_table "recipes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "source"
     t.string   "source_uid"
-    t.string   "lang",       limit: 4
     t.string   "url"
     t.string   "title"
     t.string   "image_url"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["source", "source_uid"], name: "index_recipes_on_source_and_source_uid", unique: true, using: :btree
   end
 
-  create_table "recommendations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name_ja"
-    t.string   "name_en"
-    t.string   "url"
-    t.string   "image_url"
-    t.string   "shop_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_foreign_key "klasses_recommendations", "klasses"
-  add_foreign_key "klasses_recommendations", "recommendations"
 end

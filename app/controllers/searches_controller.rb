@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
 
   def show
     @title = params[:title]
-    @materials = Watson::Nlc.new(I18n.locale).fetch_materials(title: params[:title])
+    @materials = Watson::Nlc.new.fetch_materials(title: params[:title])
     @recommendation = Recommendation.pick(@materials) if @materials.present?
   end
 
