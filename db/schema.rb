@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008065602) do
+ActiveRecord::Schema.define(version: 20161216235426) do
 
   create_table "crawled_urls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "url"
@@ -23,6 +23,25 @@ ActiveRecord::Schema.define(version: 20161008065602) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "kondates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string   "source"
+    t.string   "source_uid"
+    t.string   "url"
+    t.string   "title"
+    t.string   "image_url"
+    t.integer  "cooking_time"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["source", "source_uid"], name: "index_kondates_on_source_and_source_uid", unique: true, using: :btree
+  end
+
+  create_table "kondates_recipes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer "kondate_id"
+    t.integer "recipe_id"
+    t.index ["kondate_id"], name: "index_kondates_recipes_on_kondate_id", using: :btree
+    t.index ["recipe_id"], name: "index_kondates_recipes_on_recipe_id", using: :btree
   end
 
   create_table "materials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
