@@ -1,5 +1,6 @@
 class Kondate < ApplicationRecord
-  has_and_belongs_to_many :recipes
+  has_many :dishes
+  has_many :recipes, through: :dish
 
   enum genre: {
       breakfast: 0,
