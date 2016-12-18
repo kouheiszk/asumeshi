@@ -10,55 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216235426) do
+ActiveRecord::Schema.define(version: 20161217025251) do
 
   create_table "crawled_urls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "url"
+    t.string   "url",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["url"], name: "index_crawled_urls_on_url", using: :btree
   end
 
   create_table "klasses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_klasses_on_name", unique: true, using: :btree
   end
 
   create_table "kondates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "source"
-    t.string   "source_uid"
-    t.string   "url"
-    t.string   "title"
-    t.string   "image_url"
-    t.integer  "cooking_time"
+    t.string   "source",       null: false
+    t.string   "source_uid",   null: false
+    t.integer  "genre",        null: false
+    t.string   "url",          null: false
+    t.string   "title",        null: false
+    t.string   "image_url",    null: false
+    t.integer  "cooking_time", null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["genre"], name: "index_kondates_on_genre", using: :btree
     t.index ["source", "source_uid"], name: "index_kondates_on_source_and_source_uid", unique: true, using: :btree
   end
 
   create_table "kondates_recipes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.integer "kondate_id"
-    t.integer "recipe_id"
+    t.integer "kondate_id",                   null: false
+    t.integer "recipe_id",                    null: false
+    t.boolean "is_main_dish", default: false, null: false
+    t.index ["is_main_dish"], name: "index_kondates_recipes_on_is_main_dish", using: :btree
+    t.index ["kondate_id", "recipe_id"], name: "index_kondates_recipes_on_kondate_id_and_recipe_id", unique: true, using: :btree
     t.index ["kondate_id"], name: "index_kondates_recipes_on_kondate_id", using: :btree
     t.index ["recipe_id"], name: "index_kondates_recipes_on_recipe_id", using: :btree
   end
 
   create_table "materials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.integer  "recipe_id"
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_materials_on_name", using: :btree
-    t.index ["recipe_id"], name: "index_materials_on_recipe_id", using: :btree
+    t.index ["name"], name: "index_materials_on_name", unique: true, using: :btree
+  end
+
+  create_table "materials_recipes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer "material_id", null: false
+    t.integer "recipe_id",   null: false
+    t.index ["material_id"], name: "index_materials_recipes_on_material_id", using: :btree
+    t.index ["recipe_id"], name: "index_materials_recipes_on_recipe_id", using: :btree
   end
 
   create_table "recipes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "source"
-    t.string   "source_uid"
-    t.string   "url"
-    t.string   "title"
-    t.string   "image_url"
+    t.string   "source",     null: false
+    t.string   "source_uid", null: false
+    t.string   "url",        null: false
+    t.string   "title",      null: false
+    t.string   "image_url",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["source", "source_uid"], name: "index_recipes_on_source_and_source_uid", unique: true, using: :btree
