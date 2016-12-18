@@ -4,7 +4,11 @@ class SearchesController < ApplicationController
   def show
     @title = params[:title]
     @materials = Watson::Nlc.new.fetch_materials(title: params[:title])
-    @recommendation = Recommendation.pick(@materials) if @materials.present?
+    kondates = Kondate.not_contain_klasses(@materials.map(&:klass)) if @materials.present?
+
+    @breakfast = kondates.breakfast.sample(1).first
+    @lunch = kondates.lunch.sample(1).first
+    @dinner = kondates.dinner.sample(1).first
   end
 
   private
