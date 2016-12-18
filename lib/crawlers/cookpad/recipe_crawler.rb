@@ -1,7 +1,7 @@
 module Crawlers
   class Cookpad::RecipeCrawler < CookpadCrawler
     SEARCH_URL = "http://cookpad.com/search"
-    SEARCH_PAGING_LIMIT = 2
+    SEARCH_PAGING_LIMIT = 10
 
     def crawl(url:)
       source_uid = Crawlers::Cookpad::RecipeCrawler.get_recipe_id_from_url(url)
