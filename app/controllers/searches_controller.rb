@@ -1,19 +1,24 @@
 class SearchesController < ApplicationController
-  before_action :set_debug_mode
-
   def show
-    @title = params[:title]
-    @materials = Watson::Nlc.new.fetch_materials(title: params[:title])
-    kondates = Kondate.not_contain_klasses(@materials.map(&:klass)) if @materials.present?
+    @keywords = search_params[:keywords] || ""
+    @materials = Watson::Nlc.new.fetch_materials(titles: @keywords)
 
-    @breakfast = kondates.breakfast.sample(1).first
-    @lunch = kondates.lunch.sample(1).first
-    @dinner = kondates.dinner.sample(1).first
+    if @materials.present?
+      kondates = Kondate.not_contain_klasses(@materials.map(&:klass))
+
+      @breakfast = kondates.breakfast.sample(1).first
+      @lunch = kondates.lunch.sample(1).first
+      @dinner = kondates.dinner.sample(1).first
+    else
+      @breakfast = nil
+      @lunch = nil
+      @dinner = nil
+    end
   end
 
   private
 
-  def set_debug_mode
-    @debug_mode = params[:debug].to_i == 1
+  def search_params
+    params.permit(:keywords)
   end
 end

@@ -1,9 +1,8 @@
 <%= form_tag(search_path, method: :get, class: "col s12") do %>
-    <%= hidden_field_tag :debug, debug ? 1 : 0 %>
     <div class="row">
       <div class="input-field col s12">
-        <%= text_field_tag :title, title %>
-        <%= label_tag :title, t("what_eaten") %>
+        <%= text_field_tag :keywords, keywords %>
+        <%= label_tag :keywords, t("what_eaten") %>
       </div>
     </div>
     <div class="row center">

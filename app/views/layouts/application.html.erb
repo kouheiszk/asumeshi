@@ -30,9 +30,6 @@
   <div class="container">
     <span class="text-muted">
       Team IDEAL TELLERS
-      <% if controller_name == 'searches' %>
-          <%= link_to @debug_mode ? t('turn_off_debug_mode') : t('turn_on_debug_mode'), url_added_param(request.url, 'debug', @debug_mode ? 0 : 1) %>
-      <% end %>
     </span>
   </div>
 </footer>
