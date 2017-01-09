@@ -1,6 +1,6 @@
 module Crawlers
   class Cookpad::RecipeCrawler < CookpadCrawler
-    SEARCH_URL = "http://cookpad.com/search"
+    SEARCH_URL = 'http://cookpad.com/search'
     SEARCH_PAGING_LIMIT = 10
 
     def crawl(url:)
@@ -17,12 +17,14 @@ module Crawlers
       page = @agent.get(url)
       sleep SLEEP_SEC
 
-      title = page.search("#recipe-title h1")&.text&.strip
-      image_url = page.search("#main-photo img")&.first&.get_attribute("src")
-      materials = page.search("#ingredients_list .ingredient_name .name")&.map(&:text)&.map(&:strip) || []
+      title = page.search('#recipe-title h1')&.text&.strip
+      image_url = page.search('#main-photo img')&.first&.get_attribute('src')
+      materials = page.search('#ingredients_list .ingredient_name .name')&.map(&:text)&.map(&:strip) || []
 
       # 保存
-      save_crawled_recipe(source_uid: source_uid, url: url, title: title, image_url: image_url, materials: materials)
+      if Recipe.is_valid_recipe_title?(title)
+        save_crawled_recipe(source_uid: source_uid, url: url, title: title, image_url: image_url, materials: materials)
+      end
     end
 
     def execute
@@ -50,9 +52,9 @@ module Crawlers
       page = @agent.get(search_url)
       sleep SLEEP_SEC
 
-      recipes = page.search("#main_content > .recipe-preview") || []
+      recipes = page.search('#main_content > .recipe-preview') || []
       recipe_urls = recipes.map do |recipe|
-        path = recipe.at("a")[:href]
+        path = recipe.at('a')[:href]
         recipe_url = "#{BASE_URL}#{path}"
         recipe_url
       end

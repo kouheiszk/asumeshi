@@ -1,6 +1,6 @@
 module Crawlers
   class Cookpad::KondateCrawler < CookpadCrawler
-    SEARCH_URL = "http://cookpad.com/kondate/categories"
+    SEARCH_URL = 'http://cookpad.com/kondate/categories'
     SEARCH_PAGING_LIMIT = 100
     GENRE_CATEGORY_IDS = {
         breakfast: 4,
@@ -22,13 +22,15 @@ module Crawlers
       page = @agent.get(url)
       sleep SLEEP_SEC
 
-      title = page.search("h1.title")&.text&.strip
-      image_url = page.search("#kondate_photo_wrapper img")&.first&.get_attribute("src")
-      cooking_time = page.search(".cooking_time .center span")&.text&.strip
-      recipe_urls = page.search(".kondate_recipe a.recipe_title").map { |e| "#{BASE_URL}#{e["href"]}" }
+      title = page.search('h1.title')&.text&.strip
+      image_url = page.search('#kondate_photo_wrapper img')&.first&.get_attribute('src')
+      cooking_time = page.search('.cooking_time .center span')&.text&.strip
+      recipe_urls = page.search('.kondate_recipe a.recipe_title').map { |e| "#{BASE_URL}#{e['href']}" }
 
       # 保存
-      save_crawled_kondate(source_uid: source_uid, genre: genre, url: url, title: title, image_url: image_url, cooking_time: cooking_time, recipe_urls: recipe_urls)
+      if Recipe.is_valid_recipe_title?(title)
+        save_crawled_kondate(source_uid: source_uid, genre: genre, url: url, title: title, image_url: image_url, cooking_time: cooking_time, recipe_urls: recipe_urls)
+      end
     end
 
     def execute
@@ -55,9 +57,9 @@ module Crawlers
       page = @agent.get(search_url)
       sleep SLEEP_SEC
 
-      kondates = page.search("#main_content > .kondate_list_view") || []
+      kondates = page.search('#main_content > .kondate_list_view') || []
       kondate_urls = kondates.map do |kondate|
-        path = kondate.at("a")[:href]
+        path = kondate.at('a')[:href]
         kondate_url = "#{BASE_URL}#{path}"
         kondate_url
       end

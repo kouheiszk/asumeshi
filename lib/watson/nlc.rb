@@ -4,13 +4,13 @@ module Watson
       @credential = Settings.watson.nlc
     end
 
-    def fetch_materials(titles:)
-      return [] if titles.blank?
+    def fetch_materials(keywords:)
+      return [] if keywords.blank?
       return [] if @credential.blank?
 
       response = Excon.post("https://gateway.watsonplatform.net/natural-language-classifier/api/v1/classifiers/#{@credential.classifier_id}/classify",
-                            body: {text: titles}.to_json,
-                            headers: {"Content-Type" => "application/json", "X-SyncTimeout" => 30},
+                            body: { text: keywords }.to_json,
+                            headers: { 'Content-Type' => 'application/json', 'X-SyncTimeout' => 30 },
                             user: @credential.user,
                             password: @credential.password)
       result = Hashie::Mash.new(JSON.load(response.body))
