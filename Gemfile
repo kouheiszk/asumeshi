@@ -45,7 +45,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
 gem 'seed-fu' # 初期データの管理
 gem 'mechanize' # クローラ
 gem 'excon' # HTTPクライアント
@@ -57,7 +56,7 @@ gem 'figaro' # 設定
 gem 'sprockets' # Assets compile
 
 gem 'jquery-rails' # JQuery
-gem 'bootstrap', '~> 4.0.0.alpha5' # Bootstrap
+gem 'bootstrap', '~> 4.0.0.alpha6' # Bootstrap
 gem 'turbolinks' # Turbolinks
 gem 'hashie' # Super cool hash
 gem 'unicorn' # Unicorn
@@ -65,3 +64,9 @@ gem 'unicorn' # Unicorn
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
+
+gem 'devise'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'

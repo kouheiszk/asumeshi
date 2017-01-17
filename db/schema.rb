@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218064621) do
+ActiveRecord::Schema.define(version: 20170115071630) do
 
   create_table "crawled_urls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "url",        null: false
@@ -73,6 +73,20 @@ ActiveRecord::Schema.define(version: 20161218064621) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["source", "source_uid"], name: "index_recipes_on_source_and_source_uid", unique: true, using: :btree
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string   "uid",                             null: false
+    t.string   "provider",                        null: false
+    t.string   "name",                            null: false
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",       default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
 end
