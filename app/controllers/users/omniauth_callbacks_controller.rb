@@ -15,4 +15,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def failure
     redirect_to root_path
   end
+
+  protected
+
+  def after_sign_in_path_for(resource)
+    if resource.sign_in_count < 1
+      # 初回ログインの際は、アレルギーなどを聞く画面に遷移する
+      root_path
+    else
+      # 料理名入力画面に遷移
+      search_path
+    end
+  end
 end

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  devise :omniauthable, omniauth_providers: [:facebook]
+  devise :trackable, :omniauthable, omniauth_providers: [:facebook]
 
   def self.find_for_facebook_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
