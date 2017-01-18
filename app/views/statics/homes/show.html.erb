@@ -1,18 +1,12 @@
-<% content_for :header do %>
-    <!-- No header -->
-<% end %>
-
-<div class="section">
-  <div class="container">
-    <h1 class="header center"><%= image_tag "logo.png", style: "max-width: 100%;" %></h1>
-    <div class="row center">
-      <h5 class="header col s12 light"><%= t("catch") %></h5>
-    </div>
-    <div class="row center">
-      <%= link_to "はじめる", search_path, class: "btn-large waves-effect waves-light" %>
-      <% if current_user.blank? %>
-          <%= link_to "FBログイン", user_facebook_omniauth_authorize_path %>
-      <% end %>
-    </div>
+<div class="container">
+  <h1 class="header center"><%= image_tag "logo.png", style: "max-width: 100%;" %></h1>
+  <div class="row center">
+    <h5 class="header col s12 light"><%= t("catch") %></h5>
+  </div>
+  <div class="row center">
+    <%= link_to "はじめる", search_path, class: "btn-large waves-effect waves-light" %>
+    <% if current_user.blank? %>
+        <%= link_to "FBログイン", user_facebook_omniauth_authorize_path %>
+    <% end %>
   </div>
 </div>
