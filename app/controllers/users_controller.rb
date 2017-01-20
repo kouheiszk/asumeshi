@@ -68,6 +68,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :dislike_list, {allergy_ids: []})
+    params.require(:user).permit(:name, :allergy_list, :dislike_list)
   end
 end

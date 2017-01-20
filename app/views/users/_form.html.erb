@@ -12,11 +12,8 @@
     <% end %>
 
     <div>
-      <h5>アレルギーのある食材を選択</h5>
-
-      <%= collection_check_boxes(:user, :allergy_ids, Allergy.all, :id, :name) do |b| %>
-          <%= b.label { b.check_box + b.text } %>
-      <% end %>
+      <h5>アレルギーのある食材を入力してください</h5>
+      <%= f.text_area :allergy_list %>
     </div>
 
     <div>
