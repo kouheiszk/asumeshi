@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   devise :trackable, :omniauthable, omniauth_providers: [:facebook]
+  acts_as_taggable_on :dislikes
 
   has_and_belongs_to_many :allergies
-  has_and_belongs_to_many :dislikes
 
   def self.find_for_facebook_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
