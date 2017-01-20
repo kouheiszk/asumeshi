@@ -4,12 +4,15 @@ class BoardingsController < ApplicationController
 
   # GET /boarding/step1
   def step1
-
   end
 
   # POST /boarding/step1
   def achieve_step1
-    redirect_to search_path
+    if @user.update(user_params)
+      redirect_to redirect_to, notice: 'アレルギーと食べられないものを登録しました'
+    else
+      render :step1
+    end
   end
 
   # GET /boarding/step1
