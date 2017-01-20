@@ -1,0 +1,25 @@
+<%= form_for(user) do |f| %>
+    <% if user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+            <% user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div>
+      <h5>アレルギーのある食材を入力してください</h5>
+      <%= f.text_area :allergy_list %>
+    </div>
+
+    <div>
+      <h5>その他食べられないものを入力してください</h5>
+      <%= f.text_area :dislike_list %>
+    </div>
+
+    <%= f.submit '送信', class: 'btn-primary' %>
+<% end %>
