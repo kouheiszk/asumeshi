@@ -1,1 +1,0 @@
-json.array! @boardings, partial: 'boardings/boarding', as: :boarding
