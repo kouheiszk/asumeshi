@@ -1,0 +1,1 @@
+json.partial! "boardings/boarding", boarding: @boarding
