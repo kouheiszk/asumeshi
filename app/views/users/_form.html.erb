@@ -1,17 +1,19 @@
 <%= form_for(user) do |f| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <% if user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= collection_check_boxes(:user, :allergy_ids, Allergy.all, :id, :name) do |b| %>
+        <%= b.label { b.check_box + b.text } %>
+    <% end %>
+
+    <%= f.submit '送信', class: 'btn-primary' %>
 <% end %>
