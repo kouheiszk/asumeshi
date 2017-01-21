@@ -2,6 +2,12 @@ class User < ApplicationRecord
   devise :trackable, :omniauthable, omniauth_providers: [:facebook]
   acts_as_taggable_on :allergies, :dislikes
 
+  enum style: {
+      either: 0,
+      cooking: 1,
+      restaurant: 2
+  }
+
   def self.find_for_facebook_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 

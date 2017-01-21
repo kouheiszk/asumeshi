@@ -251,6 +251,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  autoprefixer-rails
   better_errors
   binding_of_caller
   bootstrap (~> 4.0.0.alpha6)

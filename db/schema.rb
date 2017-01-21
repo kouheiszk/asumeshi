@@ -10,21 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120181533) do
-
-  create_table "allergies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_allergies_on_name", using: :btree
-  end
-
-  create_table "allergies_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.integer "allergy_id"
-    t.integer "user_id"
-    t.index ["allergy_id"], name: "index_allergies_users_on_allergy_id", using: :btree
-    t.index ["user_id"], name: "index_allergies_users_on_user_id", using: :btree
-  end
+ActiveRecord::Schema.define(version: 20170121082738) do
 
   create_table "crawled_urls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "url",        null: false
@@ -41,20 +27,6 @@ ActiveRecord::Schema.define(version: 20170120181533) do
     t.index ["kondate_id", "recipe_id"], name: "index_dishes_on_kondate_id_and_recipe_id", unique: true, using: :btree
     t.index ["kondate_id"], name: "index_dishes_on_kondate_id", using: :btree
     t.index ["recipe_id"], name: "index_dishes_on_recipe_id", using: :btree
-  end
-
-  create_table "dislikes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_dislikes_on_name", using: :btree
-  end
-
-  create_table "dislikes_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.integer "dislike_id"
-    t.integer "user_id"
-    t.index ["dislike_id"], name: "index_dislikes_users_on_dislike_id", using: :btree
-    t.index ["user_id"], name: "index_dislikes_users_on_user_id", using: :btree
   end
 
   create_table "klasses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -132,6 +104,7 @@ ActiveRecord::Schema.define(version: 20170120181533) do
     t.string   "uid",                             null: false
     t.string   "provider",                        null: false
     t.string   "name",                            null: false
+    t.integer  "style",               default: 0, null: false
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",       default: 0, null: false
     t.datetime "current_sign_in_at"
@@ -142,8 +115,4 @@ ActiveRecord::Schema.define(version: 20170120181533) do
     t.datetime "updated_at",                      null: false
   end
 
-  add_foreign_key "allergies_users", "allergies"
-  add_foreign_key "allergies_users", "users"
-  add_foreign_key "dislikes_users", "dislikes"
-  add_foreign_key "dislikes_users", "users"
 end

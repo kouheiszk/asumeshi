@@ -55,6 +55,7 @@ gem 'sprockets' # Assets compile
 
 gem 'jquery-rails' # JQuery
 gem 'bootstrap', '~> 4.0.0.alpha6' # Bootstrap
+gem 'autoprefixer-rails'
 gem 'turbolinks' # Turbolinks
 gem 'hashie' # Super cool hash
 gem 'unicorn' # Unicorn
