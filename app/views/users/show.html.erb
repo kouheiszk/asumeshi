@@ -1,6 +1,6 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
 
-  <%= link_to 'Edit', edit_user_path(@user) %>
-  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+  <%= link_to '編集する', edit_user_path(@user), class: 'btn btn-primary' %>
+  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-secondary' %>
 </div>
