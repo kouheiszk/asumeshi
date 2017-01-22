@@ -10,15 +10,12 @@
         <dl class="mt-3">
           <dt>入っている食材</dt>
           <dd>
-            <ul>
-              <% kondate.materials.each do |m| %>
-                  <li><%= m.name %></li>
-              <% end %>
-            </ul>
+            <% kondate.materials.each do |m| %>
+                <span><%= m.name %></span>
+            <% end %>
           </dd>
         </dl>
       </div>
     </div>
   </div>
 </div>
-
