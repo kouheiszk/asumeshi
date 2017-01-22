@@ -12,12 +12,7 @@
           </div>
       <% end %>
 
-      <div>
-        <h5>よく利用する食事方法を選択してください</h5>
-        <%= collection_radio_buttons(:user, :style, User.styles, :first, :last) do |b| %>
-            <%= b.label { b.radio_button + 'aaa' } %>
-        <% end %>
-      </div>
+      <%= render 'users/form_style_fieldset', f: f, user: @user %>
 
       <%= f.submit '送信', class: 'btn-primary' %>
   <% end %>

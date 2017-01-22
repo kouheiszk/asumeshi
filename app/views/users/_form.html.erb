@@ -11,15 +11,9 @@
         </div>
     <% end %>
 
-    <div>
-      <h5>アレルギーのある食材を入力してください</h5>
-      <%= f.text_area :allergy_list %>
-    </div>
-
-    <div>
-      <h5>その他食べられないものを入力してください</h5>
-      <%= f.text_area :dislike_list %>
-    </div>
+    <%= render 'users/form_allergies_fieldset', f: f %>
+    <%= render 'users/form_dislikes_fieldset', f: f %>
+    <%= render 'users/form_style_fieldset', f: f, user: @user %>
 
     <%= f.submit '送信', class: 'btn-primary' %>
 <% end %>
