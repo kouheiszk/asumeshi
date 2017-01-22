@@ -1,0 +1,8 @@
+<%= form_tag(search_kondate_path, method: :post) do %>
+    <div class="form-group">
+      <%= label_tag :yesterday_dishes, '何食べた？' %>
+      <%= text_field_tag :yesterday_dishes, yesterday_dishes, class: 'form-control' %>
+    </div>
+
+    <%= submit_tag '送信', class: 'btn btn-primary' %>
+<% end %>

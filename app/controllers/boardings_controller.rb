@@ -22,7 +22,7 @@ class BoardingsController < ApplicationController
   # POST /boarding/step1
   def achieve_step2
     if @user.update(user_params)
-      redirect_to search_path, notice: '食事方法を登録しました'
+      redirect_to search_kondate_path, notice: '食事方法を登録しました'
     else
       render :step2
     end
