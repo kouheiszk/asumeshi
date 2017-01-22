@@ -8,6 +8,8 @@ class User < ApplicationRecord
       restaurant: 2
   }
 
+  validates :name, presence: true
+
   def self.find_for_facebook_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 

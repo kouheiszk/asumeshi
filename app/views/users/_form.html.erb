@@ -11,6 +11,7 @@
         </div>
     <% end %>
 
+    <%= render 'users/form_profile_fieldset', f: f %>
     <%= render 'users/form_allergies_fieldset', f: f %>
     <%= render 'users/form_dislikes_fieldset', f: f %>
     <%= render 'users/form_style_fieldset', f: f, user: @user %>
