@@ -1,6 +1,6 @@
 <fieldset>
   <h5>よく利用する食事方法を選択してください</h5>
   <%= f.collection_radio_buttons(:style, User.styles, :first, :last) do |b| %>
-      <%= b.label { b.radio_button + 'aaa' } %>
+      <%= b.label { b.radio_button + t("activerecord.enum.user.style.#{b.value}") } %>
   <% end %>
 </fieldset>

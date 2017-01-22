@@ -1,12 +1,22 @@
 ---
 ja:
   activerecord:
+    attributes:
+      user:
+        name: "名前"
+    enum:
+      user:
+        style:
+          either: "どちらも"
+          cooking: "自炊"
+          restaurant: "外食"
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+# Default
   date:
     abbr_day_names:
     - 日
