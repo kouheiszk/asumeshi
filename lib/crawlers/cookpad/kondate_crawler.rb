@@ -1,7 +1,7 @@
 module Crawlers
   class Cookpad::KondateCrawler < CookpadCrawler
     SEARCH_URL = 'http://cookpad.com/kondate/categories'
-    SEARCH_PAGING_LIMIT = 100
+    SEARCH_PAGING_LIMIT = 1000
     GENRE_CATEGORY_IDS = {
         breakfast: 4,
         lunch: 5,
@@ -74,10 +74,12 @@ module Crawlers
 
     def save_crawled_kondate(source_uid:, genre:, url:, title:, image_url:, cooking_time:, recipe_urls:)
       kondate = Kondate.new(source: SOURCE, source_uid: "#{source_uid}", genre: genre, url: url, title: title, image_url: image_url, cooking_time: cooking_time)
+
       recipe_urls.each.with_index do |url, index|
         recipe = Cookpad::RecipeCrawler.crawl(url: url)
-        kondate.dishes << Dish.new(recipe: recipe, is_main_dish: index == 0) if recipe.present?
+        kondate.dishes << Dish.new(recipe: recipe, is_main_dish: index == 0)
       end
+
       kondate.tap(&:save)
     end
   end

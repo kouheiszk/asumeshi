@@ -1,4 +1,4 @@
-<fieldset>
-  <h5>その他食べられないものを入力してください</h5>
-  <%= f.text_area :dislike_list %>
-</fieldset>
+<div class="form-group">
+  <%= f.label :dislike_list, 'その他食べられないものを入力してください' %>
+  <%= f.text_area :dislike_list, class: 'form-control', rows: 3 %>
+</div>

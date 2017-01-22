@@ -1,6 +1,6 @@
 class Kondate < ApplicationRecord
   has_many :dishes
-  has_many :recipes, through: :dish
+  has_many :recipes, through: :dishes
 
   scope :not_contain_keywords, -> (keywords) { joins(:dishes => :recipe).eager_load(:dishes => :recipe).merge(Recipe.not_contain_keywords(keywords)) }
   scope :not_contain_klasses, -> (klasses) { not_contain_keywords(klasses.map(&:name).map { |names| names.split(?,) }.flatten) }
@@ -10,4 +10,8 @@ class Kondate < ApplicationRecord
       lunch: 1,
       dinner: 2
   }
+
+  def materials
+    recipes.map(&:materials).flatten
+  end
 end

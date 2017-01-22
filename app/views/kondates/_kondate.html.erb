@@ -1,8 +1,24 @@
-<dl>
-  <dt></dt>
-  <dd><%= kondate.title %></dd>
-  <dt></dt>
-  <dd><%= image_tag kondate.image_url %></dd>
-  <dt>調理時間</dt>
-  <dd><%= kondate.cooking_time %>分</dd>
-</dl>
+<div class="card">
+  <div class="row">
+    <div class="col" style="min-height: 460px; background-image: url('<%= kondate.image_url %>'); background-size: cover;">
+    </div>
+    <div class="col">
+      <div class="card-block">
+        <h4 class="card-title"><%= kondate.title %></h4>
+        <h6 class="card-subtitle mb-2 text-muted">調理時間 <%= kondate.cooking_time %> 分</h6>
+
+        <dl class="mt-3">
+          <dt>入っている食材</dt>
+          <dd>
+            <ul>
+              <% kondate.materials.each do |m| %>
+                  <li><%= m.name %></li>
+              <% end %>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+

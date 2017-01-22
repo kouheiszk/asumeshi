@@ -1,7 +1,7 @@
 module Crawlers
   class Cookpad::RecipeCrawler < CookpadCrawler
     SEARCH_URL = 'http://cookpad.com/search'
-    SEARCH_PAGING_LIMIT = 10
+    SEARCH_PAGING_LIMIT = 20
 
     def crawl(url:)
       source_uid = Crawlers::Cookpad::RecipeCrawler.get_recipe_id_from_url(url)
@@ -22,9 +22,7 @@ module Crawlers
       materials = page.search('#ingredients_list .ingredient_name .name')&.map(&:text)&.map(&:strip) || []
 
       # 保存
-      if Recipe.is_valid_recipe_title?(title)
-        save_crawled_recipe(source_uid: source_uid, url: url, title: title, image_url: image_url, materials: materials)
-      end
+      save_crawled_recipe(source_uid: source_uid, url: url, title: title, image_url: image_url, materials: materials)
     end
 
     def execute

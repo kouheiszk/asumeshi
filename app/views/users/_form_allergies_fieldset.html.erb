@@ -1,5 +1,5 @@
-<fieldset>
-  <h5>アレルギーのある食材を入力してください</h5>
-  <%= f.text_area :allergy_list %>
-</fieldset>
+<div class="form-group">
+  <%= f.label :allergy_list, 'アレルギーのある食材を入力してください' %>
+  <%= f.text_area :allergy_list, class: 'form-control', rows: 3 %>
+</div>
 
