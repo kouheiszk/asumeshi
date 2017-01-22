@@ -10,8 +10,8 @@ body {
   margin-bottom: 100px;
 }
 
-main > .container {
-  padding: 60px 0 0;
+main > .container:first-child {
+  padding-top: 60px;
 }
 
 nav.navbar > .container {

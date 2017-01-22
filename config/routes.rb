@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     delete 'sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :users, only: %i(show edit update)
+  resource :user, only: %i(show edit update)
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

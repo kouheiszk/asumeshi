@@ -1,7 +1,7 @@
 module Crawlers
   class Cookpad::KondateCrawler < CookpadCrawler
     SEARCH_URL = 'http://cookpad.com/kondate/categories'
-    SEARCH_PAGING_LIMIT = 20
+    SEARCH_PAGING_LIMIT = 40
     GENRE_CATEGORY_IDS = {
         breakfast: 4,
         lunch: 5,

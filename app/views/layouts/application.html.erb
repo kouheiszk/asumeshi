@@ -37,7 +37,7 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <% if current_user.present? %>
-              <%= link_to 'プロフィール', user_path(current_user.id), class: 'nav-link' %>
+              <%= link_to 'プロフィール', user_path, class: 'nav-link' %>
           <% else %>
               <%= link_to 'ログイン', user_facebook_omniauth_authorize_path, class: 'nav-link' %>
           <% end %>
@@ -49,6 +49,7 @@
 
 <!-- Begin page content -->
 <main>
+  <% flash_messages %>
   <%= yield %>
 </main>
 
