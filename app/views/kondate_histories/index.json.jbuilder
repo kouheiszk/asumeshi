@@ -1,0 +1,1 @@
+json.array! @kondate_histories, partial: 'kondate_histories/kondate_history', as: :kondate_history

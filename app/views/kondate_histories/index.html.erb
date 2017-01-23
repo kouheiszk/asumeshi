@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Kondate Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @kondate_histories.each do |kondate_history| %>
+      <tr>
+        <td><%= link_to 'Show', kondate_history %></td>
+        <td><%= link_to 'Edit', edit_kondate_history_path(kondate_history) %></td>
+        <td><%= link_to 'Destroy', kondate_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Kondate History', new_kondate_history_path %>

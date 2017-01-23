@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # 献立の履歴
+  resources :kondate_histories, only: [:index, :show]
+
   # 初回ログイン時
   get 'boarding/step1', to: 'boardings#step1'
   post 'boarding/step1', to: 'boardings#achieve_step1'

@@ -1,0 +1,1 @@
+json.partial! "kondate_histories/kondate_history", kondate_history: @kondate_history

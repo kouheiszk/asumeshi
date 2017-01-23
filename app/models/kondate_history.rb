@@ -1,0 +1,2 @@
+class KondateHistory < ApplicationRecord
+end
