@@ -24,7 +24,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       boarding_step1_path
     else
       # 料理名入力画面に遷移
-      search_kondate_path
+      new_kondate_path
     end
   end
 end

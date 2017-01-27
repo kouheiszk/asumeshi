@@ -5,7 +5,7 @@
   </div>
 
   <div class="row center">
-    <%= link_to "はじめる", search_kondate_path, class: "btn-large waves-effect waves-light" %>
+    <%= link_to "はじめる", new_kondate_path, class: "btn-large waves-effect waves-light" %>
     <% if current_user.blank? %>
         <%= link_to "FBログイン", user_facebook_omniauth_authorize_path %>
     <% end %>

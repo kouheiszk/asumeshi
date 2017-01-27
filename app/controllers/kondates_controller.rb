@@ -1,22 +1,39 @@
 class KondatesController < ApplicationController
-  def search
-    @yesterday_dishes = search_params[:yesterday_dishes]
-    @materials = Watson::Nlc.new.fetch_materials(keywords: @yesterday_dishes)
 
-    if @materials.present?
-      keywords = @materials.map(&:klass).map(&:name).map { |names| names.split(?,) }.flatten
-      keywords = keywords.concat(current_user.allergy_list).concat(current_user.dislike_list).uniq if current_user.present?
-      kondates = Kondate.not_contain_keywords(keywords)
+  def show
+    @kondates = Kondate.today_kondates_by_user(current_user)
+    if @kondates.blank?
+      redirect_to new_kondate_path, notice: '昨日食べたものを入力してください' and return
+    end
+  end
 
-      @breakfast = kondates.breakfast.sample(1).first
-      @lunch = kondates.lunch.sample(1).first
-      @dinner = kondates.dinner.sample(1).first
+  def new
+    # すでに本日検索済みだったら検索結果を表示する
+    @today_kondates = Kondate.today_kondates_by_user(current_user)
+    if @today_kondates.present?
+      redirect_to kondate_path and return
+    end
+
+    @yesterday_kondates = Kondate.yesterday_kondates_by_user(current_user)
+    @kondate = Kondate.new
+  end
+
+  def create
+    @kondates = Kondate.create_kondates_from_keywords(kondate_params[:title], current_user)
+    if @kondates.present?
+      if current_user.present?
+        redirect_to kondate_path, notice: '解析が完了しました'
+      else
+        render :show
+      end
+    else
+      render :new
     end
   end
 
   private
 
-  def search_params
-    params.permit(:yesterday_dishes)
+  def kondate_params
+    params.require(:kondate).permit(:title)
   end
 end

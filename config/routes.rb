@@ -16,12 +16,7 @@ Rails.application.routes.draw do
   resources :trainings, only: %i(index)
 
   # 献立検索用
-  resource :kondate, only: [] do
-    member do
-      get 'search'
-      post 'search'
-    end
-  end
+  resource :kondate, only: [:new, :create, :show]
 
   # 献立の履歴
   resources :kondate_histories, only: [:index, :show]

@@ -1,0 +1,11 @@
+<div class="container">
+  <% if @yesterday_kondates.present? %>
+      <h2>朝ごはん</h2>
+      <%= render 'kondates/kondate', kondate: @yesterday_kondates.breakfast %>
+      <h2>昼ごはん</h2>
+      <%= render 'kondates/kondate', kondate: @yesterday_kondates.lunch %>
+      <h2>夜ご飯</h2>
+      <%= render 'kondates/kondate', kondate: @yesterday_kondates.dinner %>
+  <% end %>
+  <%= render 'form', kondate: @kondate, yesterday_kondate_histories: @yesterday_kondate_histories %>
+</div>

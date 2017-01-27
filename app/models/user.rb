@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  has_many :kondate_histories, dependent: :destroy
+
   def self.find_for_facebook_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 
