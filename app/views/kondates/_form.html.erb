@@ -1,7 +1,7 @@
 <%= form_for kondate, url: kondate_path, method: :post do |f| %>
     <div class="form-group">
       <%= f.label :title, '何食べた？' %>
-      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.text_field :title, class: 'form-control js-kondate-title-field' %>
     </div>
 
     <%= f.submit '送信', class: 'btn btn-primary' %>

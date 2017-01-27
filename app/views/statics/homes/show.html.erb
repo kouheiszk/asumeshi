@@ -1,15 +1,26 @@
 <div class="container">
-  <h1 class="header center"><%= image_tag "logo.png", style: "max-width: 100%;" %></h1>
-  <div class="row center">
-    <h5 class="header col s12 light"><%= t("catch") %></h5>
+  <div class="row justify-content-center">
+    <div class="col-xs-12">
+      <%= image_tag 'logo.png', style: 'max-width: 100%;' %>
+    </div>
   </div>
 
-  <div class="row center">
-    <%= link_to "はじめる", new_kondate_path, class: "btn-large waves-effect waves-light" %>
-    <% if current_user.blank? %>
-        <%= link_to "FBログイン", user_facebook_omniauth_authorize_path %>
-    <% end %>
-  </div>
+  <% if current_user.blank? %>
+      <div class="row">
+        <div class="col-6">
+          <%= link_to '今日何食べる？', new_kondate_path, class: 'btn btn-primary btn-block' %>
+        </div>
+        <div class="col-6">
+          <%= link_to "FBログイン", user_facebook_omniauth_authorize_path, class: 'btn btn-secondary btn-block' %>
+        </div>
+      </div>
+  <% else %>
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-xs-12">
+          <%= link_to '今日何食べる？', new_kondate_path, class: 'btn btn-primary btn-block' %>
+        </div>
+      </div>
+  <% end %>
 
   <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
   <button type="button" class="btn btn-primary">Primary</button>

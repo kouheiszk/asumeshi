@@ -10,6 +10,11 @@ ja:
           either: "どちらも"
           cooking: "自炊"
           restaurant: "外食"
+      kondate:
+        genre:
+          breakfast: "朝食"
+          lunch: "昼食"
+          dinner: "夕食"
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

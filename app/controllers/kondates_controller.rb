@@ -22,7 +22,7 @@ class KondatesController < ApplicationController
     @kondates = Kondate.create_kondates_from_keywords(kondate_params[:title], current_user)
     if @kondates.present?
       if current_user.present?
-        redirect_to kondate_path, notice: '解析が完了しました'
+        redirect_to kondate_path, notice: '推薦データの生成が完了しました'
       else
         render :show
       end
