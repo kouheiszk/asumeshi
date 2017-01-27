@@ -9,10 +9,12 @@
         <dl class="mt-3">
           <dt>入っている食材</dt>
           <dd>
-            <% kondate.materials.each do |m| %>
-                <span><%= m.name %></span>
+            <% kondate.materials.map(&:normalized_name).compact.uniq.each do |name| %>
+                <span><%= name %></span>
             <% end %>
           </dd>
+          <dt>レシピURL</dt>
+          <dd><%= link_to kondate.url, kondate.url %></dd>
         </dl>
       </div>
     </div>
