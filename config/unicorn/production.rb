@@ -1,9 +1,15 @@
+current_path = File.expand_path('../../..', __FILE__)
+shared_path = current_path.gsub(/current$/, 'shared')
+
+working_directory current_path
+
 worker_processes 2
+timeout 30
 
-listen '/tmp/unicorn.sock'
-
-stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
-stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
+listen "#{shared_path}/tmp/sockets/unicorn.sock", backlog: 64
+pid "#{shared_path}/tmp/pids/unicorn.pid"
+stderr_path "#{shared_path}/log/unicorn.log"
+stdout_path "#{shared_path}/log/unicorn.log"
 
 preload_app true
 

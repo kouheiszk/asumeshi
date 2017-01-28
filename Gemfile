@@ -38,6 +38,12 @@ group :development do
 
   gem 'pry'
   gem 'pry-rails'
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -58,7 +64,10 @@ gem 'bootstrap', '~> 4.0.0.alpha6' # Bootstrap
 gem 'autoprefixer-rails'
 gem 'turbolinks' # Turbolinks
 gem 'hashie' # Super cool hash
-gem 'unicorn' # Unicorn
+
+group :production do
+  gem 'unicorn'
+end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
