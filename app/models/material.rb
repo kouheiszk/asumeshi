@@ -11,6 +11,7 @@ class Material < ApplicationRecord
       ソース 缶 チューブ パック 中華スープ 鶏がらスープ 全粒粉 月桂樹の葉 ブイヨン 市販
     )
     return nil if name =~ Regexp.new("#{condiments.join('|')}")
+
     normalized = name.scan(/(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+/)
     normalized.first if normalized.size == 1
   end

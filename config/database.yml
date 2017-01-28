@@ -58,3 +58,4 @@ production:
   host: <%= ENV['DATABASE_HOST'] %>
   charset: utf8mb4
   collation: utf8mb4_bin
+  socket: <%= ENV['DATABASE_SOCKET'] %>

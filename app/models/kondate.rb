@@ -14,6 +14,19 @@ class Kondate < ApplicationRecord
     recipes.map(&:materials).flatten
   end
 
+  def self.is_valid_keywords?(keywords)
+    big_category = %w(
+      お茶漬け リゾット おにぎり カレー カレーライス チャーハン 炒飯 ピラフ オムライス 寿司
+      ハンバーガー サンドイッチ うどん そば 蕎麦 ラーメン パスタ スパゲッティ グラタン 餃子
+      カツ 天ぷら シチュー 鍋 コロッケ オムレツ おでん 煮物 サラダ 酢の物 味噌汁 スープ
+    )
+    if keywords =~ Regexp.new("#{big_category.join('|')}")
+      return false
+    else
+      return true
+    end
+  end
+
   def self.today_kondates_by_user(user)
     return nil if user.blank?
 

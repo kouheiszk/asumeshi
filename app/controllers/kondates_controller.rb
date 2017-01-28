@@ -19,6 +19,10 @@ class KondatesController < ApplicationController
   end
 
   def create
+    unless Kondate.is_valid_keywords?(kondate_params[:title])
+      redirect_to new_kondate_path, notice: 'もう少し詳しく入力してください' and return
+    end
+
     @kondates = Kondate.create_kondates_from_keywords(kondate_params[:title], current_user)
     if @kondates.present?
       if current_user.present?
@@ -27,7 +31,7 @@ class KondatesController < ApplicationController
         render :show
       end
     else
-      render :new
+      redirect_to new_kondate_path, error: '推薦データを生成できませんでした'
     end
   end
 
@@ -36,4 +40,5 @@ class KondatesController < ApplicationController
   def kondate_params
     params.require(:kondate).permit(:title)
   end
+
 end
