@@ -1,5 +1,6 @@
-current_path = File.expand_path('../../..', __FILE__)
-shared_path = current_path.gsub(/current$/, 'shared')
+app_path = '/var/www/asumeshi'
+current_path = "#{app_path}/current"
+shared_path = "#{app_path}/shared"
 
 working_directory current_path
 
@@ -10,6 +11,11 @@ listen "#{shared_path}/tmp/sockets/unicorn.sock", backlog: 64
 pid "#{shared_path}/tmp/pids/unicorn.pid"
 stderr_path "#{shared_path}/log/unicorn.log"
 stdout_path "#{shared_path}/log/unicorn.log"
+
+# use correct Gemfile on restarts
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "#{app_path}/current/Gemfile"
+end
 
 preload_app true
 
