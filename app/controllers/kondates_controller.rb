@@ -31,7 +31,7 @@ class KondatesController < ApplicationController
         render :show
       end
     else
-      redirect_to new_kondate_path, error: '推薦データを生成できませんでした'
+      redirect_to new_kondate_path, notice: '推薦データを生成できませんでした'
     end
   end
 

@@ -15,6 +15,8 @@ class Kondate < ApplicationRecord
   end
 
   def self.is_valid_keywords?(keywords)
+    return false if keywords.blank?
+
     big_category = %w(
       お茶漬け リゾット おにぎり カレー カレーライス チャーハン 炒飯 ピラフ オムライス 寿司
       ハンバーガー サンドイッチ うどん そば 蕎麦 ラーメン パスタ スパゲッティ グラタン 餃子
