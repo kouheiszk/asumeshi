@@ -24,8 +24,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -36,8 +36,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'pry'
-  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 
   gem 'capistrano'
   gem 'capistrano-rails'
@@ -80,3 +80,6 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
 gem 'acts-as-taggable-on'
+
+# active record
+gem 'activerecord-session_store'
