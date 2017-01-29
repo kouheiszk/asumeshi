@@ -1,31 +1,4 @@
 @import "bootstrap-custom";
 @import "bootstrap";
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 100px;
-}
-
-main > .container:first-child {
-  padding-top: 60px;
-}
-
-nav.navbar > .container {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-footer.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 106px;
-  padding: 36px 0 40px;
-  line-height: 30px; /* Vertically center the text there */
-  background: image_url('bg/ftr_bg_border.png') repeat-x center top #efefef;
-  color: #000000;
-}
+@import "layouts";
+@import "pages";

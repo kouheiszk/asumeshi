@@ -1,10 +1,7 @@
 <div class="container">
   <% if @kondates.present? %>
-      <h2>朝ごはん</h2>
       <%= render 'kondates/kondate', kondate: @kondates.breakfast %>
-      <h2>昼ごはん</h2>
       <%= render 'kondates/kondate', kondate: @kondates.lunch %>
-      <h2>夜ご飯</h2>
       <%= render 'kondates/kondate', kondate: @kondates.dinner %>
   <% end %>
 </div>

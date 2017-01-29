@@ -1,0 +1,24 @@
+.kondate {
+  overflow: hidden;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .kondate-image {
+    .image-spacer {
+      max-width: 100%;
+      min-width: 160px;
+      min-height: 320px;
+      background-size: cover;
+    }
+  }
+
+  .kondate-content {
+    dl dd {
+      overflow-wrap: break-word;
+    }
+  }
+}

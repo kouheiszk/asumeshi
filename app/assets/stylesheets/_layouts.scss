@@ -1,0 +1,32 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 100px;
+}
+
+main {
+  padding-bottom: 5px;
+
+  > .container:first-child {
+    padding-top: 69px;
+  }
+}
+
+nav.navbar > .container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+footer.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 106px;
+  padding: 36px 0 40px;
+  line-height: 30px; /* Vertically center the text there */
+  background: image_url('bg/ftr_bg_border.png') repeat-x center top #efefef;
+  color: #000000;
+}
