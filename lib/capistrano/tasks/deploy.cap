@@ -1,0 +1,8 @@
+namespace :deploy do
+  task :restart do
+    invoke 'unicorn:restart'
+  end
+end
+
+before 'deploy:publishing', 'db:seed_fu'
+after 'deploy:publishing', 'deploy:restart'

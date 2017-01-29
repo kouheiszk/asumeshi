@@ -38,7 +38,7 @@ class KondatesController < ApplicationController
   private
 
   def kondate_params
-    params.require(:kondate).permit(:title)
+    params.permit(:query)
   end
 
 end

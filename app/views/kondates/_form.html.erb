@@ -1,8 +1,8 @@
-<%= form_for kondate, url: kondate_path, method: :post do |f| %>
+<%= form_tag url: kondate_path, method: :post do |f| %>
     <div class="form-group">
-      <%= f.label :title, '何食べた？' %>
-      <%= f.text_field :title, class: 'form-control js-kondate-title-field' %>
+      <%= label_tag :query, '何食べた？' %>
+      <%= text_field_tag :query, params[:query], class: 'form-control js-kondate-title-field' %>
     </div>
 
-    <%= f.submit '送信', class: 'btn btn-primary' %>
+    <%= submit_tag '送信', class: 'btn btn-primary' %>
 <% end %>
