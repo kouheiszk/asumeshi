@@ -15,7 +15,7 @@ class KondatesController < ApplicationController
     # すでに本日検索済みだったら検索結果を表示する
     @today_kondates = KondateHistory.histories_for_user(current_user)
     if @today_kondates.present?
-      redirect_to kondate_path and return
+      redirect_to kondate_path
     end
   end
 
