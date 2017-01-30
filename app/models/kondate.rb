@@ -50,6 +50,7 @@ class Kondate < ApplicationRecord
     material_names_ordered = material_names.group_by { |n| n }.sort_by { |_, v| -v.size }.map(&:first)
 
     # 上位10つの食材が含まれるレストランを検索し返す
-    Gnavi::Restaurant.new.fetch_restaurant(keywords: material_names_ordered.first(10).join(','))
+    # Gnavi::Restaurant.new.fetch_restaurant(keywords: material_names_ordered.first(10).join(','))
+    Gnavi::Restaurant.new.fetch_restaurant(keywords: '卵').uniq { |r| r.code.category_code_s }
   end
 end
