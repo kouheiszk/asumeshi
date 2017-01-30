@@ -8,11 +8,13 @@
   }
 
   .kondate-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+
     .image-spacer {
       max-width: 100%;
       min-width: 160px;
       min-height: 320px;
-      background-size: cover;
     }
   }
 

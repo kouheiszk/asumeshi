@@ -2,20 +2,18 @@ class KondatesController < ApplicationController
   before_action :set_yesterday_kondates, only: [:new, :create]
 
   def show
-    if current_user.present?
-      @kondates = Kondate.today_kondates_by_user(current_user)
-    elsif session[:history].present?
-      @kondates = Kondate.today_kondates_by_history(session[:history])
-    end
+    kondate_histories = session[:kondate_histories]
+    kondate_histories = KondateHistory.histories_for_user(current_user) if current_user.present?
 
+    @kondates = Kondate.kondates_by_kondate_histories(kondate_histories).includes(:recipes => :materials)
     if @kondates.blank?
-      redirect_to new_kondate_path, notice: '昨日食べたものを入力してください' and return
+      redirect_to new_kondate_path, notice: '昨日食べたものを入力してください'
     end
   end
 
   def new
     # すでに本日検索済みだったら検索結果を表示する
-    @today_kondates = Kondate.today_kondates_by_user(current_user)
+    @today_kondates = KondateHistory.histories_for_user(current_user)
     if @today_kondates.present?
       redirect_to kondate_path and return
     end
@@ -29,8 +27,7 @@ class KondatesController < ApplicationController
 
     @kondates = Kondate.create_kondates_from_keywords(query_params[:query], exclude_keywords: current_user&.exclude_recipe_material_names)
     if @kondates.present?
-      KondateHistory.save_kondates(@kondates, user: current_user) if current_user.present?
-      session[:history] = Kondate.history_from_kondates(@kondates)
+      session[:kondate_histories] = KondateHistory.create_kondate_histories_from_kondates(@kondates, user: current_user)
       redirect_to kondate_path, notice: '推薦データの生成が完了しました'
     else
       render :new, notice: '推薦データを生成できませんでした'
@@ -44,6 +41,7 @@ class KondatesController < ApplicationController
   end
 
   def set_yesterday_kondates
-    @yesterday_kondates = Kondate.yesterday_kondates_by_user(current_user)
+    histories = KondateHistory.histories_for_user(current_user, at: -1.day)
+    @yesterday_kondates = Kondate.kondates_by_kondate_histories(histories)
   end
 end

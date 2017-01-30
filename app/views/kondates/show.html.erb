@@ -1,7 +1,7 @@
 <div class="container">
   <% if @kondates.present? %>
-      <%= render 'kondates/kondate', kondate: @kondates.breakfast %>
-      <%= render 'kondates/kondate', kondate: @kondates.lunch %>
-      <%= render 'kondates/kondate', kondate: @kondates.dinner %>
+      <%= render 'kondates/kondate', kondate: @kondates.find { |k| k.breakfast? } %>
+      <%= render 'kondates/kondate', kondate: @kondates.find { |k| k.lunch? } %>
+      <%= render 'kondates/kondate', kondate: @kondates.find { |k| k.dinner? } %>
   <% end %>
 </div>

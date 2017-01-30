@@ -1,11 +1,11 @@
 <div class="container">
   <% if @yesterday_kondates.present? %>
       <div class="card-deck">
-        <% @yesterday_kondates.each do |genre, kondate| %>
+        <% @yesterday_kondates.each do |kondate| %>
             <div class="card">
               <div class="card-img-top" style="min-height: 240px; background-image: url('<%= kondate.image_url %>'); background-size: cover;"></div>
               <div class="card-block">
-                <h4 class="card-title">昨日の<%= t("activerecord.enum.kondate.genre.#{genre}") %></h4>
+                <h4 class="card-title">昨日の<%= t("activerecord.enum.kondate.genre.#{kondate.genre}") %></h4>
                 <p class="card-text"><%= kondate.title %></p>
               </div>
               <div class="card-footer">
