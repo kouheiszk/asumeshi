@@ -4,7 +4,7 @@ module Watson
       @credential = Settings.watson.nlc
     end
 
-    def fetch_materials(keywords:)
+    def fetch_classes(keywords:)
       return [] if keywords.blank?
       return [] if @credential.blank?
 
@@ -15,18 +15,7 @@ module Watson
                             user: @credential.user,
                             password: @credential.password)
       result = Hashie::Mash.new(JSON.load(response.body))
-      # FIXME Materialでやる
-      if result.classes.present?
-        result.classes.select { |c| c.confidence > 0 }.map do |c|
-          Hashie::Mash.new({
-                               id: c.class_name,
-                               confidence: c.confidence,
-                               klass: Klass.find(c.class_name)
-                           })
-        end
-      else
-        []
-      end
+      result[:classes]
     end
   end
 end

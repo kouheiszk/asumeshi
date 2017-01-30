@@ -12,6 +12,10 @@ class User < ApplicationRecord
 
   has_many :kondate_histories, dependent: :destroy
 
+  def exclude_recipe_material_names
+    [allergy_list, dislike_list].flatten
+  end
+
   def self.find_for_facebook_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 

@@ -70,24 +70,19 @@ class Kondate < ApplicationRecord
                      })
   end
 
-  def self.create_kondates_from_keywords(keywords, user = nil)
-    materials = Watson::Nlc.new.fetch_materials(keywords: keywords)
-    return nil if materials.blank?
+  def self.create_kondates_from_keywords(keywords, exclude_keywords: nil)
+    klasses = Klass.klasses_from_keywords(keywords)
+    return nil if klasses.blank?
 
-    keywords = materials.map(&:klass).map(&:name).map { |names| names.split(?,) }.flatten
-    keywords = keywords.concat(user.allergy_list).concat(user.dislike_list).uniq if user.present?
+    exclude_material_names = klasses.pluck(:name).map { |names| names.split(?,) }.flatten
+    exclude_material_names = exclude_material_names.concat(exclude_keywords).uniq if exclude_keywords.present?
     kondates = Hashie::Mash.new({
-                                    breakfast: Kondate.not_contain_keywords(keywords).breakfast.sample(1).first,
-                                    lunch: Kondate.not_contain_keywords(keywords).lunch.sample(1).first,
-                                    dinner: Kondate.not_contain_keywords(keywords).dinner.sample(1).first
+                                    breakfast: Kondate.not_contain_keywords(exclude_material_names).breakfast.sample(1).first,
+                                    lunch: Kondate.not_contain_keywords(exclude_material_names).lunch.sample(1).first,
+                                    dinner: Kondate.not_contain_keywords(exclude_material_names).dinner.sample(1).first
                                 })
 
-    if user.present? && kondates.breakfast.present? && kondates.lunch.present? && kondates.dinner.present?
-      kondates.each do |_, kondate|
-        KondateHistory.create(user_id: user.id, kondate_id: kondate.id, suggested_at: Time.now)
-      end
-    end
-
-    kondates
+    # 三食揃わなかったら返さない
+    kondates if kondates.breakfast.present? && kondates.lunch.present? && kondates.dinner.present?
   end
 end

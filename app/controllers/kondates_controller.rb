@@ -27,8 +27,9 @@ class KondatesController < ApplicationController
       render :new and return
     end
 
-    @kondates = Kondate.create_kondates_from_keywords(query_params[:query], current_user)
+    @kondates = Kondate.create_kondates_from_keywords(query_params[:query], exclude_keywords: current_user&.exclude_recipe_material_names)
     if @kondates.present?
+      KondateHistory.save_kondates(@kondates, user: current_user) if current_user.present?
       session[:history] = Kondate.history_from_kondates(@kondates)
       redirect_to kondate_path, notice: '推薦データの生成が完了しました'
     else
