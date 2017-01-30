@@ -9,6 +9,10 @@ class KondatesController < ApplicationController
     if @kondates.blank?
       redirect_to new_kondate_path, notice: '昨日食べたものを入力してください'
     end
+
+    if current_user.blank? || !current_user.cooking?
+      @restaurants = Kondate.restaurants_from_kondates(@kondates)
+    end
   end
 
   def new

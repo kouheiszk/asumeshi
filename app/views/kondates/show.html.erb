@@ -1,7 +1,14 @@
 <div class="container">
   <% if @kondates.present? %>
-      <%= render 'kondates/kondate', kondate: @kondates.find { |k| k.breakfast? } %>
-      <%= render 'kondates/kondate', kondate: @kondates.find { |k| k.lunch? } %>
-      <%= render 'kondates/kondate', kondate: @kondates.find { |k| k.dinner? } %>
+      <h2>自炊するなら...</h2>
+      <% @kondates.each do |kondate| %>
+          <%= render 'kondates/kondate', kondate: kondate %>
+      <% end %>
+  <% end %>
+  <% if @restaurants.present? %>
+      <h2>外食するなら...</h2>
+      <% @restaurants.first(3).each do |restaurant| %>
+          <%= render 'kondates/restaurant', restaurant: restaurant %>
+      <% end %>
   <% end %>
 </div>

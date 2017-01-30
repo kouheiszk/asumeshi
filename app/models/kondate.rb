@@ -43,4 +43,13 @@ class Kondate < ApplicationRecord
     # 三食揃わなかったら返さない
     Kondate.where(id: kondate_ids) if kondate_ids.size == 3
   end
+
+  def self.restaurants_from_kondates(kondates)
+    materials = kondates.map(&:materials).flatten
+    material_names = materials.map(&:normalized_name).compact
+    material_names_ordered = material_names.group_by { |n| n }.sort_by { |_, v| -v.size }.map(&:first)
+
+    # 上位10つの食材が含まれるレストランを検索し返す
+    Gnavi::Restaurant.new.fetch_restaurant(keywords: material_names_ordered.first(10).join(','))
+  end
 end
