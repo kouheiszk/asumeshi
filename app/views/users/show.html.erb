@@ -1,7 +1,23 @@
 <div class="container">
-  <%= current_user.name %>
-  <%= current_user.allergy_list %>
-  <%= current_user.dislike_list %>
+  <dl>
+    <dt>名前</dt>
+    <dd><%= current_user.name %></dd>
+    <dt>アレルギーのある食材</dt>
+    <dd>
+      <% current_user.allergy_list.each do |allergy| %>
+          <span><%= allergy %></span>
+      <% end %>
+    </dd>
+    <dt>その他食べられないもの</dt>
+    <dd>
+      <% current_user.dislike_list.each do |dislike| %>
+          <span><%= dislike %></span>
+      <% end %>
+    </dd>
+    <dt>よく利用する食事方法</dt>
+    <dd><%= t("activerecord.enum.user.style.#{current_user.style}") %></dd>
+  </dl>
+
   <%= link_to '編集する', edit_user_path, class: 'btn btn-primary' %>
   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-secondary' %>
 </div>
