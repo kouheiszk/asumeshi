@@ -1,4 +1,7 @@
 <div class="container">
+  <%= current_user.name %>
+  <%= current_user.allergy_list %>
+  <%= current_user.dislike_list %>
   <%= link_to '編集する', edit_user_path, class: 'btn btn-primary' %>
   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-secondary' %>
 </div>
