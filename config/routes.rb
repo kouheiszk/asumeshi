@@ -27,5 +27,8 @@ Rails.application.routes.draw do
   get 'boarding/step2', to: 'boardings#step2'
   post 'boarding/step2', to: 'boardings#achieve_step2'
 
+  # デバッグモード
+  get 'debug', to: 'debugs#show'
+
   root 'statics/homes#show'
 end

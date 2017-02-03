@@ -1,4 +1,4 @@
-<%= form_tag kondate_path, method: :post do |f| %>
+<%= form_tag kondate_path, method: :post do %>
     <div class="form-group">
       <%= label_tag :query, '何食べた？' %>
       <%= text_field_tag :query, params[:query], class: 'form-control', id: 'js-query-field' %>

@@ -1,0 +1,114 @@
+<div class="container">
+  <section>
+    <h2>デバッグ用画面</h2>
+    <%= render 'debugs/form' %>
+  </section>
+
+  <section style="margin-top: 15px;">
+    <h2>学習データ</h2>
+    asdf
+  </section>
+
+  <% if @query.present? %>
+      <section style="margin-top: 15px;">
+        <h2>処理</h2>
+        <dl>
+          <dt>検索文字</dt>
+          <dd>
+            <pre style="word-wrap: break-word; white-space: pre-wrap;">
+<%= @query %>
+</pre>
+          </dd>
+
+          <dt>NLCにリクエスト</dt>
+          <dd>
+            <pre style="word-wrap: break-word; white-space: pre-wrap;">
+POST https://gateway.watsonplatform.net/natural-language-classifier/api/v1/classifiers/xxxxxxxxxx-nlc-xxxx/classif
+
+body=<%= { text: @query }.to_json %>
+</pre>
+          </dd>
+
+          <dt>NLCからのレスポンス</dt>
+          <dd>
+            <pre style="word-wrap: break-word; white-space: pre-wrap;">
+<%= @nlc_response.to_json %>
+</pre>
+          </dd>
+
+          <dt>NLCからのレスポンスを学習データとヒモ付</dt>
+          <dd>
+            <pre style="word-wrap: break-word; white-space: pre-wrap;">
+<%= @klasses.to_json %>
+</pre>
+          </dd>
+
+          <dt>学習データの食材一覧を取得</dt>
+          <dd>
+            <pre style="word-wrap: break-word; white-space: pre-wrap;">
+<%= @exclude_material_names.to_json %>
+</pre>
+          </dd>
+
+          <dt>上記食材が含まれていないレシピを取得</dt>
+          <dd>
+            <pre style="word-wrap: break-word; white-space: pre-wrap;">
+<%= @kondates.to_sql %>
+</pre>
+            <code>結果:<%= @kondates.size %>件</code>
+          </dd>
+        </dl>
+
+        <dt>朝食・昼食・夕食（のカラムID）を<%= @kondates.size %>件の中から選んでくる</dt>
+        <dd>
+          <pre style="word-wrap: break-word; white-space: pre-wrap;">
+<%= @kondate_ids.to_json %>
+</pre>
+        </dd>
+
+        <dt>選択したIDの献立を表示</dt>
+        <dd>
+          <pre style="word-wrap: break-word; white-space: pre-wrap;">
+<%= @result.to_sql %>
+</pre>
+          <pre style="word-wrap: break-word; white-space: pre-wrap;">
+<%= @result.to_json %>
+</pre>
+        </dd>
+        </dl>
+
+        <dt>献立に含まれる食材を取得</dt>
+        <dd>
+          <pre style="word-wrap: break-word; white-space: pre-wrap;">
+<%= @material_names.to_json %>
+</pre>
+        </dd>
+        </dl>
+
+        <dt>食材の重複を省き、使用回数が多い順に並べる</dt>
+        <dd>
+          <pre style="word-wrap: break-word; white-space: pre-wrap;">
+<%= @material_names_ordered.to_json %>
+</pre>
+        </dd>
+        </dl>
+
+        <dt>上位10つの食材が含まれるレストランを検索する</dt>
+        <dd>
+          <pre style="word-wrap: break-word; white-space: pre-wrap;">
+GET https://api.gnavi.co.jp/RestSearchAPI/20150630/?keyid=xxxxxxxxxx&freeword=<%= @material_names_ordered.first(10).join(?,) %>&freeword_condition=2&format=json
+
+</pre>
+        </dd>
+        </dl>
+
+        <dt>検索結果を表示</dt>
+        <dd>
+          <pre style="word-wrap: break-word; white-space: pre-wrap;">
+<%= @restaurants.first(2).to_json %>
+</pre>
+        </dd>
+        </dl>
+      </section>
+  <% end %>
+</div>

@@ -23,29 +23,32 @@
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-light bg-faded fixed-top navbar-toggleable-md">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <%= link_to root_path, class: 'navbar-brand' do %>
-        <%= image_tag 'icon_150x150.png', width: 30, height: 30, class: 'd-inline-block align-top' %>
-        Asumeshi
-    <% end %>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <% if current_user.present? %>
-              <%= link_to 'プロフィール', user_path, class: 'nav-link' %>
-          <% else %>
-              <%= link_to 'ログイン', user_facebook_omniauth_authorize_path, class: 'nav-link' %>
-          <% end %>
-        </li>
-      </ul>
-    </div>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <%= link_to root_path, class: 'navbar-brand' do %>
+      <%= image_tag 'icon_150x150.png', width: 30, height: 30, class: 'd-inline-block align-top' %>
+      Asumeshi
+  <% end %>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item <%= controller_path == 'kondates' ? 'active' : nil %>">
+        <%= link_to 'Home', kondate_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item <%= controller_path == 'debugs' ? 'active' : nil %>">
+        <%= link_to 'Debug', debug_path, class: 'nav-link' %>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <% if current_user.present? %>
+            <%= link_to 'プロフィール', user_path, class: 'nav-link' %>
+        <% else %>
+            <%= link_to 'ログイン', user_facebook_omniauth_authorize_path, class: 'nav-link' %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 
 </nav>
 
