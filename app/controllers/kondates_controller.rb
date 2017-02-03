@@ -11,7 +11,7 @@ class KondatesController < ApplicationController
     end
 
     if current_user.blank? || !current_user.cooking?
-      @restaurants = Kondate.restaurants_from_kondates(@kondates)
+      @restaurants = Kondate.restaurants_from_kondates(@kondates, coordinates: session[:coordinates])
     end
   end
 
@@ -24,6 +24,11 @@ class KondatesController < ApplicationController
   end
 
   def create
+    # 位置情報が送信されてきたら、保存する
+    if coordinates_params[:latitude].present? && coordinates_params[:longitude].present?
+      session[:coordinates] = coordinates_params
+    end
+
     unless Kondate.is_enough_text?(query_params[:query])
       flash.now[:notice] = 'もう少し詳しく入力してください'
       render :new and return
@@ -55,6 +60,10 @@ class KondatesController < ApplicationController
 
   def query_params
     params.permit(:query)
+  end
+
+  def coordinates_params
+    params.permit(:latitude, :longitude)
   end
 
   def set_yesterday_kondates

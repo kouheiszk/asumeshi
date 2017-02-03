@@ -1,8 +1,10 @@
 <%= form_tag kondate_path, method: :post do |f| %>
     <div class="form-group">
       <%= label_tag :query, '何食べた？' %>
-      <%= text_field_tag :query, params[:query], class: 'form-control js-kondate-query-field' %>
+      <%= text_field_tag :query, params[:query], class: 'form-control', id: 'js-query-field' %>
     </div>
 
+    <%= hidden_field_tag :latitude, nil, id: 'js-latitude-field' %>
+    <%= hidden_field_tag :longitude, nil, id: 'js-longitude-field' %>
     <%= submit_tag '送信', class: 'btn btn-primary' %>
 <% end %>
