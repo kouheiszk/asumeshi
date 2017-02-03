@@ -6,7 +6,8 @@
 
   <section style="margin-top: 15px;">
     <h2>学習データ</h2>
-    <%= link_to '学習データのダウンロード', asset_path('data/trainings.csv') %> (約1MB)
+    <p><%= link_to '学習データのダウンロード', 'https://github.com/kouheiszk/asumeshi/raw/master/public/data/trainings.csv' %>(約1MB)</p>
+    <p><%= link_to '学習データのクラスと食材の紐付け一覧', 'https://raw.githubusercontent.com/kouheiszk/asumeshi/master/db/fixtures/klasses.rb' %></p>
   </section>
 
   <% if @query.present? %>
@@ -97,7 +98,6 @@ body=<%= { text: @query }.to_json %>
         <dd>
           <pre style="word-wrap: break-word; white-space: pre-wrap;">
 GET https://api.gnavi.co.jp/RestSearchAPI/20150630/?keyid=xxxxxxxxxx&freeword=<%= @material_names_ordered.first(10).join(?,) %>&freeword_condition=2&format=json
-
 </pre>
         </dd>
         </dl>
