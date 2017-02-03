@@ -15,8 +15,8 @@ class Kondate < ApplicationRecord
     recipes.map(&:materials).flatten
   end
 
-  def self.is_valid_keywords?(keywords)
-    return false if keywords.blank?
+  def self.is_enough_text?(text)
+    return false if text.blank?
 
     big_categories = %w(
       お茶漬け リゾット おにぎり カレー カレーライス チャーハン 炒飯 ピラフ オムライス 寿司
@@ -24,15 +24,27 @@ class Kondate < ApplicationRecord
       カツ 天ぷら シチュー 鍋 コロッケ オムレツ おでん 煮物 サラダ 酢の物 味噌汁 スープ
     )
 
-    !big_categories.include?(keywords)
+    !big_categories.include?(text)
   end
 
-  def self.create_kondates_from_keywords(keywords, exclude_keywords: nil)
-    klasses = Klass.klasses_from_keywords(keywords)
-    return nil if klasses.blank?
+  def self.create_kondates_from_text(text, exclude_keywords: nil)
+    exclude_material_names = []
 
-    exclude_material_names = klasses.pluck(:name).map { |names| names.split(?,) }.flatten
-    exclude_material_names = exclude_material_names.concat(exclude_keywords).uniq if exclude_keywords.present?
+    # テキストを素に食材を判別し、含まれている食材を省く
+    if text.present?
+      klasses = Klass.klasses_from_text(text)
+      exclude_material_names = exclude_material_names.concat(klasses.pluck(:name).map { |names| names.split(?,) }.flatten).uniq
+    end
+
+    # 除外すべきキーワードを素に、含まれている食材を省く
+    if exclude_keywords.present?
+      klasses = Klass.contain_keywords(exclude_keywords)
+      exclude_material_names = exclude_material_names.concat(klasses.pluck(:name).map { |names| names.split(?,) }.flatten).uniq
+      exclude_material_names = exclude_material_names.concat(exclude_keywords).uniq
+    end
+
+    return nil if exclude_material_names.blank?
+
     kondates = Kondate.not_contain_keywords(exclude_material_names)
     kondate_ids = [
         kondates.breakfast.pluck(:id).uniq.sample(1).first,
@@ -51,6 +63,6 @@ class Kondate < ApplicationRecord
 
     # 上位10つの食材が含まれるレストランを検索し返す
     # Gnavi::Restaurant.new.fetch_restaurant(keywords: material_names_ordered.first(10).join(','))
-    Gnavi::Restaurant.new.fetch_restaurant(keywords: '卵').uniq { |r| r.code.category_code_s }
+    Gnavi::Restaurant.new.fetch_restaurant(keywords: material_names_ordered).uniq { |r| r.code.category_code_s }
   end
 end

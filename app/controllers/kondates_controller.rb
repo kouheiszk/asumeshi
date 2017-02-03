@@ -24,12 +24,12 @@ class KondatesController < ApplicationController
   end
 
   def create
-    unless Kondate.is_valid_keywords?(query_params[:query])
+    unless Kondate.is_enough_text?(query_params[:query])
       flash.now[:notice] = 'もう少し詳しく入力してください'
       render :new and return
     end
 
-    @kondates = Kondate.create_kondates_from_keywords(query_params[:query], exclude_keywords: current_user&.exclude_recipe_material_names)
+    @kondates = Kondate.create_kondates_from_text(query_params[:query], exclude_keywords: current_user&.exclude_recipe_material_names)
     if @kondates.present?
       session[:kondate_histories] = KondateHistory.create_kondate_histories_from_kondates(@kondates, user: current_user)
       redirect_to kondate_path, notice: '推薦データの生成が完了しました'
