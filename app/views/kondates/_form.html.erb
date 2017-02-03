@@ -4,7 +4,7 @@
       <%= text_field_tag :query, params[:query], class: 'form-control', id: 'js-query-field' %>
     </div>
 
-    <%= hidden_field_tag :latitude, nil, id: 'js-latitude-field' %>
-    <%= hidden_field_tag :longitude, nil, id: 'js-longitude-field' %>
+    <%= hidden_field_tag :latitude, '35.65062800', id: 'js-latitude-field' %>
+    <%= hidden_field_tag :longitude, '139.54068300', id: 'js-longitude-field' %>
     <%= submit_tag '送信', class: 'btn btn-primary' %>
 <% end %>
