@@ -1,9 +1,9 @@
 <div class="card kondate">
   <div class="row">
-    <div class="col kondate-image" style="background-image: url('<%= kondate.image_url %>');">
+    <div class="col-sm-12 col-md-6 kondate-image" style="background-image: url('<%= kondate.image_url %>');">
       <div class="image-spacer"></div>
     </div>
-    <div class="col kondate-content">
+    <div class="col-sm-12 col-md-6 kondate-content">
       <div class="card-block">
         <h4 class="card-title"><%= kondate.title %>&nbsp;(<%= t("activerecord.enum.kondate.genre.#{kondate.genre}") %>)</h4>
         <h6 class="card-subtitle mb-2 text-muted">調理時間 <%= kondate.cooking_time %> 分</h6>
