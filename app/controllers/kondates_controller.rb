@@ -29,7 +29,20 @@ class KondatesController < ApplicationController
       render :new and return
     end
 
-    @kondates = Kondate.create_kondates_from_text(query_params[:query], exclude_keywords: current_user&.exclude_recipe_material_names)
+    if current_user.present?
+      # ユーザ情報がある場合は、過去7日間に推薦した献立に含まれるレシピをなるべく省くようにする
+      7.times do |i|
+        exclude_keywords = current_user.exclude_recipe_material_names
+        histories = KondateHistory.histories_for_user(current_user, past: (7-i).day).includes(:kondate => { :recipes => :materials })
+        exclude_material_names = histories.map(&:kondate).map(&:materials).flatten.map(&:normalized_name).compact
+        exclude_keywords = exclude_keywords.concat(exclude_material_names).uniq
+        @kondates = Kondate.create_kondates_from_text(query_params[:query], exclude_keywords: exclude_keywords)
+        break if @kondates.present?
+      end
+    else
+      @kondates = Kondate.create_kondates_from_text(query_params[:query])
+    end
+
     if @kondates.present?
       session[:kondate_histories] = KondateHistory.create_kondate_histories_from_kondates(@kondates, user: current_user)
       redirect_to kondate_path, notice: '推薦データの生成が完了しました'
