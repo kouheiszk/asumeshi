@@ -2,7 +2,8 @@ class Kondate < ApplicationRecord
   has_many :dishes
   has_many :recipes, through: :dishes
 
-  scope :not_contain_keywords, -> (keywords) { joins(:dishes => :recipe).eager_load(:dishes => :recipe).merge(Recipe.not_contain_keywords(keywords)) }
+  scope :contain_keywords, -> (keywords) { joins(:dishes => :recipe).eager_load(:dishes => :recipe).merge(Recipe.contain_keywords(keywords)) }
+  scope :not_contain_keywords, -> (keywords) { where.not(id: Kondate.contain_keywords(keywords).select(:id)) }
   scope :kondates_by_kondate_histories, -> (histories) { where(id: histories.present? ? histories.map(&:kondate_id) : []).order(:genre) }
 
   enum genre: {
@@ -62,7 +63,6 @@ class Kondate < ApplicationRecord
     material_names_ordered = material_names.group_by { |n| n }.sort_by { |_, v| -v.size }.map(&:first)
 
     # 上位10つの食材が含まれるレストランを検索し返す
-    # Gnavi::Restaurant.new.fetch_restaurant(keywords: material_names_ordered.first(10).join(','))
-    Gnavi::Restaurant.new.fetch_restaurant(keywords: material_names_ordered, coordinates: coordinates).uniq { |r| r.code.category_code_s }
+    Gnavi::Restaurant.new.fetch_restaurant(keywords: material_names_ordered, coordinates: coordinates)&.uniq { |r| r.code.category_code_s }
   end
 end
