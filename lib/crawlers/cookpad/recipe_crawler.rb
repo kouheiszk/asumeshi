@@ -74,7 +74,8 @@ module Crawlers
 
       recipe = Recipe.new(source: SOURCE, source_uid: "#{source_uid}", url: url, title: title, image_url: image_url)
       materials.each do |material|
-        recipe.materials << Material.find_or_create_by(name: material)
+        name = Material.normalized_name(material)
+        recipe.materials << Material.find_or_create_by(name: name) if name.present?
       end
       recipe.tap(&:save)
     end

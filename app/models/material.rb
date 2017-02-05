@@ -3,7 +3,7 @@ class Material < ApplicationRecord
 
   scope :contain_keywords, -> (keywords) { where(keywords.map { "`materials`.`name` LIKE ?" }.join(" OR "), *keywords.map { |k| "%#{k}%" }) if keywords.present? }
 
-  def normalized_name
+  def is_seasoning?
     condiments = %w(
       調味料 水 湯 酒 砂糖 きび糖 三温糖 グラニュー糖 塩 ソルト 胡椒 こしょう みりん 味醂 醤油 しょうゆ 酢 油 味噌 豆板醤 コンソメ ワイン はちみつ カレー粉 出汁
       レモン汁 バター ナンプラー ヨーグルト 牛乳 小麦粉 薄力粉 強力粉 片栗粉 つゆ かつお節 ブラックペッパー クミン
@@ -11,9 +11,15 @@ class Material < ApplicationRecord
       ソース 缶 チューブ パック 中華スープ 鶏がらスープ 全粒粉 月桂樹の葉 ブイヨン 市販
       ご飯 生クリーム
     )
-    return nil if name =~ Regexp.new("#{condiments.join('|')}")
+    name =~ Regexp.new("#{condiments.join('|')}")
+  end
 
-    normalized = name.scan(/(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+/)
-    normalized.first if normalized.size == 1
+  def normalized_name
+    Material.normalized_name(name)
+  end
+
+  def self.normalized_name(name)
+    normalized = name.gsub(/\(.*?\)/, '').scan(/(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+/)
+    normalized.first
   end
 end
